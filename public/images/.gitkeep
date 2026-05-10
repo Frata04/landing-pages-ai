@@ -1,0 +1,3 @@
+# Cartella immagini
+# Inserire qui tutte le immagini della landing page
+# I path devono essere referenziati in config/sections.json come "/images/nome-file.jpg"

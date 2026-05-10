@@ -1,0 +1,75 @@
+---
+description: Come montare la sezione Features/Product
+alwaysApply: false
+---
+
+# FEATURES BLOCKS
+
+## QUANDO USARE
+
+Cerca nel brief: `==== PRODUCT OFFERING ====`
+
+## ESTRAZIONE CONTENUTI
+
+### Section Title → `title`
+```
+Section Title: Direzione Creativa Pura. Zero Manovalanza.
+```
+→ `title: 'Direzione Creativa Pura. Zero Manovalanza.'`
+
+### Subtext → `subtitle`
+```
+Subtext: Il sistema applica le regole...
+```
+→ `subtitle: 'Il sistema applica le regole...'`
+
+### Main Categories → `features[].name`
+```
+Main Categories: Aesthetic Engine • Brandbook Dinamico • Agenti Autonomi
+```
+Splitta per `•`:
+```tsx
+features: [
+  { id: '1', name: 'Aesthetic Engine' },
+  { id: '2', name: 'Brandbook Dinamico' },
+  { id: '3', name: 'Agenti Autonomi' },
+]
+```
+
+### Category Context → NON usare per singole features
+
+Il `Category Context` è una descrizione generale. **NON** spezzarla nelle singole features.
+
+Se vuoi usarla, mettila nel `subtitle`.
+
+## SCELTA COMPONENTE
+
+| Numero features | Layout brief | Usa |
+|-----------------|--------------|-----|
+| 3 | "3 Col", "Horizontal" | `FeaturesGrid` columns={3} |
+| 4 | "2x2", "Pillars" | `Features2x2` |
+| 5+ | "Bento" | `FeaturesBento` |
+
+## CODICE FINALE
+
+```tsx
+import { FeaturesGrid } from '@/components/blocks'
+
+const featuresContent = {
+  title: 'Direzione Creativa Pura. Zero Manovalanza.',
+  subtitle: 'Il sistema applica le regole del design d\'autore al tuo Brandbook, consegnandoti asset finiti e pronti all\'uso, senza frizioni tecniche.',
+  features: [
+    { id: '1', name: 'Aesthetic Engine' },
+    { id: '2', name: 'Brandbook Dinamico' },
+    { id: '3', name: 'Agenti Autonomi' },
+  ],
+}
+
+<FeaturesGrid {...featuresContent} columns={3} />
+```
+
+## ⚠️ NON AGGIUNGERE
+
+- NON aggiungere descrizioni inventate
+- NON aggiungere emoji
+- NON aggiungere "Scopri di più"

@@ -1,0 +1,43 @@
+---
+description: Workflow principale per generare landing page da brief
+alwaysApply: true
+---
+
+# WORKFLOW AGENTE
+
+Quando ricevi un brief con sezioni `====`, esegui questi passi **in ordine**.
+
+## PASSO 1: LEGGI IL BRIEF
+
+Identifica:
+1. Quali sezioni esistono (HERO, PRODUCT, TRUST, CONTENT)
+2. Se c'è dark mode
+3. Se ci sono clienti/loghi
+4. Se c'è una garanzia
+
+## PASSO 2: CONFIGURA DESIGN
+
+Esegui le istruzioni in:
+- `@fonts` per i font
+- `@colors` per i colori
+
+## PASSO 3: MONTA I COMPONENTI
+
+Per ogni sezione nel brief, esegui le istruzioni in:
+- `@hero-blocks` per HERO SECTION
+- `@features-blocks` per PRODUCT OFFERING
+- `@trust-blocks` per TRUST & REASSURANCE
+- `@content-blocks` per CONTENT / BLOG
+
+## PASSO 4: GENERA PAGE.TSX
+
+Modifica `app/page.tsx`:
+1. Importa i componenti scelti
+2. Crea gli oggetti con i contenuti dal brief
+3. Monta i componenti nel return
+
+## REGOLA CRITICA
+
+**SE UNA SEZIONE NON È NEL BRIEF, NON MONTARE IL COMPONENTE.**
+
+Esempio: Se non c'è "Trusted by" o loghi clienti → NON importare TrustedByLogos.

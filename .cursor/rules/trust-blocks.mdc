@@ -1,0 +1,80 @@
+---
+description: Come montare la sezione Trust
+alwaysApply: false
+---
+
+# TRUST BLOCKS
+
+## QUANDO USARE
+
+Cerca nel brief: `==== TRUST & REASSURANCE ====`
+
+## ESTRAZIONE CONTENUTI
+
+### Trust Header → `title`
+```
+Trust Header: Qualità Agency-Grade: Ingegnerizzata, non Improvvisata.
+```
+→ `title: 'Qualità Agency-Grade: Ingegnerizzata, non Improvvisata.'`
+
+### Social Proof → `features[]`
+
+Il brief ha formato:
+```
+Social Proof: **• Niente 'Slot Machine':** L'Aesthetic Engine non tira a indovinare...
+**• Coerenza Blindata:** Il Brandbook è nativo nel codice...
+**• Pronto all'Uso:** Non consegniamo bozze...
+```
+
+Parsing:
+1. Splitta per `**•` o `• **`
+2. Il testo prima di `:` è il `title`
+3. Il testo dopo `:` è la `description`
+4. Rimuovi `**` e `•`
+
+Risultato:
+```tsx
+features: [
+  { 
+    id: '1', 
+    title: "Niente 'Slot Machine'", 
+    description: "L'Aesthetic Engine non tira a indovinare, ma replica le regole di composizione di 800 casi studio d'eccellenza."
+  },
+  { 
+    id: '2', 
+    title: 'Coerenza Blindata', 
+    description: "Il Brandbook è nativo nel codice. Font, colori e 'vibe' non deviano mai, proteggendo la tua identità."
+  },
+  { 
+    id: '3', 
+    title: "Pronto all'Uso", 
+    description: 'Non consegniamo bozze da ritoccare, ma asset definitivi pronti per il media buying.'
+  },
+]
+```
+
+## CODICE FINALE
+
+```tsx
+import { TrustFeatures } from '@/components/blocks'
+
+const trustContent = {
+  title: 'Qualità Agency-Grade: Ingegnerizzata, non Improvvisata.',
+  features: [
+    { 
+      id: '1', 
+      title: "Niente 'Slot Machine'", 
+      description: "L'Aesthetic Engine non tira a indovinare, ma replica le regole di composizione di 800 casi studio d'eccellenza."
+    },
+    // ... altri dal brief
+  ],
+}
+
+<TrustFeatures {...trustContent} />
+```
+
+## ⚠️ REGOLE
+
+- **NON montare TrustedByLogos** se non ci sono loghi clienti nel brief
+- **NON montare Guarantee** se non c'è garanzia nel brief
+- **COPIA ESATTAMENTE** i testi dal brief

@@ -1,0 +1,56 @@
+---
+description: Come configurare i font dal brief
+alwaysApply: false
+---
+
+# CONFIGURAZIONE FONT
+
+## PASSO 1: CERCA NEL BRIEF
+
+Cerca la sezione `Typography`. Estrai i nomi dei font.
+
+Esempio dal brief:
+```
+Headings Font: 'General Sans' (o 'Inter Tight')
+Body Font: 'Inter'
+```
+
+## PASSO 2: MAPPA A GOOGLE FONTS
+
+| Brief dice | Usa su Google Fonts |
+|------------|---------------------|
+| General Sans | Non disponibile → usa `Inter` weight 600 |
+| Inter Tight | `Inter_Tight` |
+| Inter | `Inter` |
+| Instrument Serif | `Instrument_Serif` |
+| Playfair Display | `Playfair_Display` |
+| DM Sans | `DM_Sans` |
+| Space Grotesk | `Space_Grotesk` |
+
+## PASSO 3: MODIFICA layout.tsx
+
+```tsx
+import { Inter } from 'next/font/google'
+
+// Se brief dice "General Sans" o "Sans-Serif geometrico"
+const headingFont = Inter({ 
+  subsets: ['latin'],
+  weight: ['500', '600'],  // Semibold come da brief
+  variable: '--font-heading',
+})
+
+const bodyFont = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-body',
+})
+```
+
+## REGOLA: LEGGI IL BRIEF
+
+Se il brief dice:
+- "Sans-serif geometrico" → Inter, DM_Sans, Space_Grotesk
+- "Serif elegante" → Instrument_Serif, Playfair_Display
+- "Autorità editoriale" → Serif
+- "Tecnico, UI" → Sans-Serif
+
+**NON usare Serif se il brief dice Sans-Serif.**

@@ -1,0 +1,88 @@
+---
+description: Come montare la sezione Content/Blog
+alwaysApply: false
+---
+
+# CONTENT BLOCKS
+
+## QUANDO USARE
+
+Cerca nel brief: `==== CONTENT / BLOG ====`
+
+## ESTRAZIONE CONTENUTI
+
+### Header → `title`
+```
+Header: Design Intelligence: Strategie per Scalare
+```
+→ `title: 'Design Intelligence: Strategie per Scalare'`
+
+### Topic Ideas → `articles[]`
+
+Il brief ha formato:
+```
+Topic Ideas: • **Brand Identity Blindata:** Come eliminare definitivamente...
+• **Scalare a Costo Zero:** Aumentare l'output creativo...
+• **La Fine del Prompting:** Perché i leader di mercato...
+```
+
+Parsing:
+1. Splitta per `•`
+2. Rimuovi `**`
+3. Unisci titolo + descrizione in un unico `title`
+
+Risultato:
+```tsx
+articles: [
+  { 
+    id: '1', 
+    title: 'Brand Identity Blindata: Come eliminare definitivamente la Brand Drift automatizzando le tue linee guida visive.',
+    type: 'article'
+  },
+  { 
+    id: '2', 
+    title: 'Scalare a Costo Zero: Aumentare l\'output creativo del 10x senza nuove assunzioni o costi di agenzia.',
+    type: 'article'
+  },
+  { 
+    id: '3', 
+    title: 'La Fine del Prompting: Perché i leader di mercato dirigono il Vibe invece di perdersi nei tecnicismi.',
+    type: 'guide'
+  },
+]
+```
+
+## SCELTA COMPONENTE
+
+| Brief dice | Usa |
+|------------|-----|
+| "magazine", "masonry" | `ArticlesMasonry` |
+| "lista", "editoriale" | `ArticlesList` |
+| "cards", "grid" | `ArticlesCards` |
+| Default | `ArticlesList` |
+
+## CODICE FINALE
+
+```tsx
+import { ArticlesList } from '@/components/blocks'
+
+const contentItems = {
+  title: 'Design Intelligence: Strategie per Scalare',
+  articles: [
+    { 
+      id: '1', 
+      title: 'Brand Identity Blindata: Come eliminare definitivamente la Brand Drift automatizzando le tue linee guida visive.',
+      type: 'article'
+    },
+    // ... altri dal brief
+  ],
+}
+
+<ArticlesList {...contentItems} />
+```
+
+## ⚠️ NON AGGIUNGERE
+
+- NON aggiungere "Scopri di più" (se non è nel brief)
+- NON aggiungere descrizioni inventate
+- NON modificare i titoli

@@ -1,0 +1,117 @@
+---
+description: Come estrarre i contenuti dal brief - REGOLE RIGIDE
+alwaysApply: true
+---
+
+# PARSING DEL BRIEF - REGOLE RIGIDE
+
+## REGOLA #1: COPIA ESATTA
+
+**NON INVENTARE MAI TESTI.**
+
+Se il brief dice:
+```
+Headline: Il Tuo Reparto Creativo Autonomo
+```
+
+Tu scrivi ESATTAMENTE:
+```tsx
+headline: 'Il Tuo Reparto Creativo Autonomo'
+```
+
+## REGOLA #2: ESTRAZIONE CATEGORIE
+
+Se il brief dice:
+```
+Main Categories: Aesthetic Engine • Brandbook Dinamico • Agenti Autonomi
+```
+
+Splitta per `•` e crea:
+```tsx
+features: [
+  { id: '1', name: 'Aesthetic Engine' },
+  { id: '2', name: 'Brandbook Dinamico' },
+  { id: '3', name: 'Agenti Autonomi' },
+]
+```
+
+## REGOLA #3: ESTRAZIONE DESCRIZIONI
+
+Se il brief ha `Category Context`:
+```
+Category Context: Non generare: dirigi. Il motore applica regole... il Brandbook blinda... gli agenti eseguono...
+```
+
+Questa è UNA descrizione condivisa. Mettila nel `subtitle` della sezione, NON nelle singole features.
+
+Se ci sono descrizioni per categoria (separate da `•` o numerate), allora assegnale.
+
+## REGOLA #4: SOCIAL PROOF / TRUST
+
+Se il brief dice:
+```
+Social Proof: **• Niente 'Slot Machine':** L'Aesthetic Engine non tira a indovinare...
+**• Coerenza Blindata:** Il Brandbook è nativo nel codice...
+**• Pronto all'Uso:** Non consegniamo bozze...
+```
+
+Estrai così:
+```tsx
+features: [
+  { 
+    id: '1', 
+    title: "Niente 'Slot Machine'", 
+    description: "L'Aesthetic Engine non tira a indovinare, ma replica le regole di composizione di 800 casi studio d'eccellenza."
+  },
+  { 
+    id: '2', 
+    title: 'Coerenza Blindata', 
+    description: "Il Brandbook è nativo nel codice. Font, colori e 'vibe' non deviano mai, proteggendo la tua identità."
+  },
+  { 
+    id: '3', 
+    title: "Pronto all'Uso", 
+    description: 'Non consegniamo bozze da ritoccare, ma asset definitivi pronti per il media buying.'
+  },
+]
+```
+
+**Nota:** Rimuovi `**` e `•` dal testo finale.
+
+## REGOLA #5: TOPIC IDEAS / ARTICOLI
+
+Se il brief dice:
+```
+Topic Ideas: • **Brand Identity Blindata:** Come eliminare...
+• **Scalare a Costo Zero:** Aumentare...
+• **La Fine del Prompting:** Perché...
+```
+
+Estrai così:
+```tsx
+articles: [
+  { 
+    id: '1', 
+    title: 'Brand Identity Blindata: Come eliminare definitivamente la Brand Drift automatizzando le tue linee guida visive.',
+    type: 'article'
+  },
+  ...
+]
+```
+
+## REGOLA #6: NON AGGIUNGERE
+
+**NON aggiungere MAI:**
+- "Scopri di più" (a meno che sia nel brief)
+- Descrizioni inventate
+- Placeholder come "Descrizione qui"
+- Emoji
+
+## CHECKLIST FINALE
+
+Prima di salvare, verifica:
+- [ ] Ogni testo viene ESATTAMENTE dal brief?
+- [ ] Non ho inventato nessuna descrizione?
+- [ ] Ho rimosso formattazione markdown (`**`, `•`)?
+- [ ] Ho rispettato i colori del brief?
+- [ ] Ho usato il font richiesto?

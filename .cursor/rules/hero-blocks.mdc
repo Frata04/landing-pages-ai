@@ -1,0 +1,73 @@
+---
+description: Come montare la sezione Hero
+alwaysApply: false
+---
+
+# HERO BLOCKS
+
+## QUANDO USARE
+
+Cerca nel brief: `==== HERO SECTION ====`
+
+## SCELTA COMPONENTE
+
+| Se il brief dice... | Usa |
+|---------------------|-----|
+| "centrato", "monumentale", "premium" | HeroCentered |
+| "immagine", "split", "50/50" | HeroSplit |
+| Default | HeroCentered |
+
+## COME MONTARE: HeroCentered
+
+### 1. Importa
+
+```tsx
+import { HeroCentered } from '@/components/blocks'
+```
+
+### 2. Crea contenuto
+
+```tsx
+const heroContent = {
+  logo: 'NOME BRAND',           // dal brief
+  strapline: 'Strapline qui',   // dal brief
+  headline: 'Headline qui',     // dal brief
+  subheadline: 'Subheadline',   // dal brief
+  ctaText: 'Testo pulsante',    // dal brief
+  ctaLink: '#signup',
+  microcopy: 'Microcopy qui',   // dal brief
+}
+```
+
+### 3. Monta
+
+```tsx
+<HeroCentered {...heroContent} />
+```
+
+## COME MONTARE: HeroSplit
+
+### 1. Importa
+
+```tsx
+import { HeroSplit } from '@/components/blocks'
+```
+
+### 2. Crea contenuto
+
+```tsx
+const heroContent = {
+  logo: 'NOME BRAND',
+  headline: 'Headline qui',
+  subheadline: 'Subheadline',
+  ctaText: 'Testo pulsante',
+  heroImage: 'hero',            // cerca public/images/hero.*
+  imagePosition: 'right',       // o 'left'
+}
+```
+
+### 3. Monta
+
+```tsx
+<HeroSplit {...heroContent} />
+```

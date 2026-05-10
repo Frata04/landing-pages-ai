@@ -1,0 +1,47 @@
+---
+description: Come configurare i colori dal brief
+alwaysApply: false
+---
+
+# CONFIGURAZIONE COLORI
+
+## PASSO 1: CERCA NEL BRIEF
+
+Cerca la sezione `Design Tokens` o `Color Palette`. Estrai i valori HEX esatti.
+
+Esempio dal brief:
+```
+--primary: #3B82F6 (Electric Cobalt)
+--surface-bg: #09090B (Rich Black)
+--surface-card: #18181B (Zinc-900)
+--border-subtle: #27272A (Zinc-800)
+--text-main: #FAFAFA (Off-White)
+--text-body: #A1A1AA (Zinc-400)
+```
+
+## PASSO 2: MODIFICA design-tokens.css
+
+Apri `config/design-tokens.css` e **COPIA ESATTAMENTE** i valori:
+
+```css
+.dark {
+  --dt-background: #09090B;
+  --dt-surface: #18181B;
+  --dt-primary: #3B82F6;
+  --dt-text: #FAFAFA;
+  --dt-text-muted: #A1A1AA;
+  --dt-border: #27272A;
+}
+```
+
+## PASSO 3: ATTIVA DARK MODE
+
+Se il brief dice "Dark Mode" o "Dark Theme", modifica `app/layout.tsx`:
+
+```tsx
+<html lang="it" className="dark">
+```
+
+## REGOLA: USA I VALORI ESATTI
+
+**NON usare valori default.** Se il brief dice `#3B82F6`, usa `#3B82F6`, non `#0066FF`.

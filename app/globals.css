@@ -1,0 +1,142 @@
+@import '../config/design-tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+ * BASE STYLES
+ * ============================================ */
+@layer base {
+  * {
+    border-color: var(--dt-border);
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--dt-background);
+    color: var(--dt-text);
+    font-family: var(--dt-font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--dt-font-heading);
+    letter-spacing: -0.02em;
+  }
+  
+  code, pre, .mono {
+    font-family: var(--dt-font-mono);
+  }
+}
+
+/* ============================================
+ * COMPONENT UTILITIES
+ * ============================================ */
+@layer utilities {
+  .text-muted {
+    color: var(--dt-text-muted);
+  }
+
+  .bg-surface {
+    background-color: var(--dt-surface);
+  }
+
+  .card-hover {
+    border: 1px solid var(--dt-border);
+    transition: all 0.2s ease;
+  }
+  .card-hover:hover {
+    box-shadow: var(--dt-shadow-hover);
+    border-color: var(--dt-primary);
+  }
+
+  .btn-glow {
+    transition: all 0.2s ease;
+  }
+  .btn-glow:hover {
+    box-shadow: var(--dt-glow);
+  }
+}
+
+/* ============================================
+ * BENTO GRID LAYOUTS
+ * ============================================ */
+.bento-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+.bento-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.bento-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.bento-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 768px) {
+  .bento-grid-2,
+  .bento-grid-3,
+  .bento-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grain::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+.glow-bg {
+  position: relative;
+}
+.glow-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at top right, rgba(0, 122, 255, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at bottom left, rgba(0, 122, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.glow-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to));
+}
+
+.optional-image-wrapper:not(:has(img)) {
+  display: none !important;
+}
+
+.client-logos-wrapper:not(:has(img)) {
+  display: none !important;
+}
+
+.article-thumbnail:not(:has(img)) {
+  display: none !important;
+}
+
+.category-image-wrapper:not(:has(img)) {
+  display: none !important;
+}
