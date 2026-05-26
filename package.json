@@ -1,0 +1,13 @@
+{
+  "name": "landing-pages-ai",
+  "version": "1.0.0",
+  "description": "Landing pages ad alta conversione per ecommerce",
+  "type": "module",
+  "scripts": {
+    "generate-voice": "node src/generate-voice.js"
+  },
+  "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.49.1",
+    "dotenv": "^16.4.7"
+  }
+}
