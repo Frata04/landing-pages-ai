@@ -1,412 +1,1121 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full scroll-smooth">
+<html lang="it" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO Meta Tags - AI: Update these for each website -->
-  <title>[Business Name] - [Your Tagline]</title>
-  <meta name="description" content="[Describe your business in 150-160 characters for search engines]">
-  <meta name="keywords" content="[keyword1, keyword2, keyword3]">
-  
-  <!-- Open Graph Meta Tags - AI: Update for social media sharing -->
-  <meta property="og:title" content="[Business Name] - [Your Tagline]">
-  <meta property="og:description" content="[Describe your business for social media]">
-  <meta property="og:image" content="/images/og-image.jpg">
-  <meta property="og:url" content="https://yourwebsite.com">
+  <title>La Zienda – Peschereccio di Martino Nicola</title>
+  <meta name="description" content="La Zienda, peschereccio di Martino Nicola. Pesce fresco e autonegozi nelle province di Asti, Alessandria e Alba. Qualità dal mare alla tua tavola.">
+  <meta property="og:title" content="La Zienda – Peschereccio di Martino Nicola">
+  <meta property="og:description" content="Pesce fresco direttamente dal peschereccio. 3 autonegozi in Piemonte: Asti, Alessandria, Alba.">
+  <meta property="og:url" content="https://lazienda.it">
   <meta property="og:type" content="website">
-  
-  <!-- Favicon -->
   <link rel="icon" href="/favicon.ico">
-  
-  <!-- Styles - Don't edit these directly -->
   <link rel="stylesheet" href="/src/main.css">
-  
-  <!-- Alpine.js for interactivity -->
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+  <style>
+    :root {
+      --ocean-deep: #0a1628;
+      --ocean-mid: #0d2847;
+      --ocean-blue: #1a4a7a;
+      --ocean-teal: #0e7490;
+      --ocean-light: #06b6d4;
+      --gold: #f59e0b;
+      --gold-light: #fcd34d;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--ocean-deep);
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+
+    /* ── CANVAS 3D ── */
+    #canvas-hero {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--ocean-deep) 0%, var(--ocean-mid) 60%, var(--ocean-blue) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(6,182,212,0.2);
+      border: 1px solid rgba(6,182,212,0.5);
+      color: var(--ocean-light);
+      padding: 0.4rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 1;
+      margin: 0 0 0.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, var(--gold-light) 50%, var(--ocean-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 40px rgba(6,182,212,0.4));
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.6rem);
+      color: rgba(226,232,240,0.85);
+      margin: 0 0 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-name {
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      color: var(--gold-light);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--ocean-teal), var(--ocean-light));
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 32px rgba(6,182,212,0.4);
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(6,182,212,0.6);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold-light);
+      padding: 1rem 2.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 2px solid var(--gold);
+      transition: transform 0.2s, background 0.2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      transform: translateY(-3px);
+      background: rgba(245,158,11,0.15);
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(226,232,240,0.5);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+
+    nav.scrolled {
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(6,182,212,0.1);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--ocean-teal), var(--ocean-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .nav-logo-text {
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: white;
+    }
+
+    .nav-logo-text span { color: var(--ocean-light); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0; padding: 0;
+    }
+
+    .nav-links a {
+      color: rgba(226,232,240,0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ocean-light); }
+
+    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 1.5rem; }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      color: var(--ocean-light);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 0 0 1.2rem;
+      color: white;
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, var(--ocean-light), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(226,232,240,0.75);
+      max-width: 600px;
+    }
+
+    /* ── CHI SIAMO ── */
+    #chi-siamo { background: var(--ocean-mid); }
+
+    .chi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) { .chi-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .tilt-inner {
+      background: linear-gradient(135deg, rgba(13,40,71,0.8), rgba(14,116,144,0.3));
+      border: 1px solid rgba(6,182,212,0.2);
+      border-radius: 24px;
+      padding: 3rem;
+      transform-style: preserve-3d;
+      transition: transform 0.12s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tilt-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 30%, rgba(6,182,212,0.08), transparent 60%);
+      border-radius: inherit;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(6,182,212,0.08);
+      border: 1px solid rgba(6,182,212,0.15);
+      border-radius: 16px;
+    }
+
+    .stat-num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: rgba(226,232,240,0.55);
+      margin-top: 0.3rem;
+    }
+
+    /* ── PRODOTTI ── */
+    #prodotti { background: var(--ocean-deep); }
+
+    .prodotti-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .prodotto-card {
+      background: linear-gradient(135deg, rgba(13,40,71,0.9), rgba(10,22,40,0.9));
+      border: 1px solid rgba(6,182,212,0.15);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prodotto-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ocean-teal), var(--ocean-light));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .prodotto-card:hover {
+      transform: translateY(-8px) rotateX(3deg);
+      box-shadow: 0 24px 48px rgba(6,182,212,0.2);
+      border-color: rgba(6,182,212,0.4);
+    }
+
+    .prodotto-card:hover::after { transform: scaleX(1); }
+
+    .prodotto-emoji { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+    .prodotto-nome {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .prodotto-desc {
+      font-size: 0.85rem;
+      color: rgba(226,232,240,0.55);
+      line-height: 1.6;
+    }
+
+    /* ── SEDI ── */
+    #sedi {
+      background: linear-gradient(180deg, var(--ocean-mid) 0%, var(--ocean-deep) 100%);
+      position: relative;
+    }
+
+    .sedi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 900px) { .sedi-grid { grid-template-columns: 1fr; } }
+
+    .sede-inner {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(160deg, rgba(13,40,71,0.95), rgba(10,22,40,0.98));
+      border: 1px solid rgba(6,182,212,0.2);
+      padding: 2.5rem 2rem;
+      transition: transform 0.4s cubic-bezier(.25,.46,.45,.94), box-shadow 0.4s;
+      transform-style: preserve-3d;
+      cursor: default;
+    }
+
+    .sede-inner:hover {
+      transform: rotateY(-6deg) rotateX(3deg) translateZ(10px);
+      box-shadow: 20px 20px 60px rgba(0,0,0,0.4), -4px -4px 20px rgba(6,182,212,0.1);
+    }
+
+    .sede-glow {
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,182,212,0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .sede-number {
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, rgba(6,182,212,0.3), rgba(6,182,212,0.1));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .sede-citta { font-size: 1.8rem; font-weight: 800; color: white; margin-bottom: 0.3rem; }
+
+    .sede-provincia {
+      font-size: 0.8rem;
+      color: var(--ocean-light);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .sede-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(6,182,212,0.3), transparent);
+      margin: 1.2rem 0;
+    }
+
+    .sede-info { display: flex; flex-direction: column; gap: 0.7rem; }
+
+    .sede-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.88rem;
+      color: rgba(226,232,240,0.7);
+    }
+
+    .sede-info-icon { color: var(--ocean-light); margin-top: 0.05rem; flex-shrink: 0; }
+
+    .sede-tag {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.3);
+      color: var(--ocean-light);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    /* ── PERCHE NOI ── */
+    #perche { background: var(--ocean-deep); }
+
+    .perche-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .perche-card {
+      padding: 2rem;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(13,40,71,0.6), rgba(14,116,144,0.15));
+      border: 1px solid rgba(6,182,212,0.12);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .perche-card:hover { transform: translateY(-6px); border-color: rgba(6,182,212,0.35); }
+
+    .perche-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--ocean-teal), var(--ocean-light));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .perche-title { font-size: 1.05rem; font-weight: 700; color: white; margin-bottom: 0.6rem; }
+    .perche-desc { font-size: 0.88rem; color: rgba(226,232,240,0.6); line-height: 1.7; }
+
+    /* ── CONTATTI ── */
+    #contatti { background: var(--ocean-mid); text-align: center; }
+
+    .contatti-cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .contatto-card {
+      background: rgba(10,22,40,0.8);
+      border: 1px solid rgba(6,182,212,0.2);
+      border-radius: 20px;
+      padding: 2.5rem 3rem;
+      min-width: 200px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .contatto-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(6,182,212,0.15);
+    }
+
+    .contatto-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+    .contatto-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ocean-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .contatto-value { font-size: 1rem; font-weight: 600; color: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ocean-deep);
+      border-top: 1px solid rgba(6,182,212,0.1);
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+
+    .footer-logo { font-size: 1.8rem; font-weight: 900; color: white; margin-bottom: 0.5rem; }
+    .footer-logo span { color: var(--ocean-light); }
+    .footer-tagline { color: rgba(226,232,240,0.4); font-size: 0.85rem; margin-bottom: 2rem; }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: 0 0 2rem;
+      padding: 0;
+    }
+
+    .footer-links a { color: rgba(226,232,240,0.5); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--ocean-light); }
+    .footer-copy { font-size: 0.8rem; color: rgba(226,232,240,0.25); }
+
+    /* ── OCEAN WAVES ── */
+    .ocean-waves {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      z-index: 5;
+    }
+
+    /* ── BUBBLES ── */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,182,212,0.15), transparent);
+      border: 1px solid rgba(6,182,212,0.1);
+      animation: float-up linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float-up {
+      0%   { transform: translateY(0) scale(1); opacity: 0.6; }
+      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+  </style>
 </head>
-<body class="flex h-full flex-col bg-white antialiased">
-  
-  <!-- Header Navigation - Mobile-friendly with hamburger menu -->
-  <header class="py-10">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <nav class="relative z-50 flex justify-between" x-data="{ mobileMenuOpen: false }">
-        <div class="flex items-center md:gap-x-12">
-          <!-- Logo - AI: Replace with business logo or name -->
-          <a href="#" aria-label="Home" class="flex items-center">
-            <svg class="h-10 w-auto" viewBox="0 0 140 40" fill="none">
-              <rect x="0" y="8" width="24" height="24" rx="4" fill="#3B82F6"/>
-              <path d="M8 20L12 24L20 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="32" y="26" font-family="system-ui" font-size="20" font-weight="700" fill="#1E293B">[Logo]</text>
-            </svg>
-          </a>
-          
-          <!-- Desktop Navigation - AI: Add/remove menu items as needed -->
-          <div class="hidden md:flex md:gap-x-6">
-            <a href="/about.html" class="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">About</a>
-            <a href="/services.html" class="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">Services</a>
-            <a href="/contact.html" class="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">Contact</a>
-          </div>
-        </div>
-        
-        <div class="flex items-center gap-x-5 md:gap-x-8">
-          <!-- Call-to-Action Button - AI: Update text and link -->
-          <a href="/contact.html" class="rounded-full bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">
-            Get Started
-          </a>
-          
-          <!-- Mobile menu button -->
-          <div class="-mr-1 md:hidden">
-            <button @click="mobileMenuOpen = !mobileMenuOpen" class="relative z-10 flex h-8 w-8 items-center justify-center">
-              <svg class="h-3.5 w-3.5 overflow-visible stroke-slate-700" fill="none" stroke-width="2" stroke-linecap="round">
-                <path d="M0 1H14M0 7H14M0 13H14" :class="mobileMenuOpen && 'scale-90 opacity-0'" class="origin-center transition"></path>
-                <path d="M2 2L12 12M12 2L2 12" :class="!mobileMenuOpen && 'scale-90 opacity-0'" class="origin-center transition"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-        
-        <!-- Mobile Navigation - AI: Keep in sync with desktop menu -->
-        <div x-show="mobileMenuOpen" 
-             x-transition:enter="transition ease-out duration-150"
-             x-transition:enter-start="opacity-0 scale-95"
-             x-transition:enter-end="opacity-100 scale-100"
-             x-transition:leave="transition ease-in duration-100"
-             x-transition:leave-start="opacity-100 scale-100"
-             x-transition:leave-end="opacity-0 scale-95"
-             @click.away="mobileMenuOpen = false"
-             class="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5 md:hidden">
-          <a href="/about.html" @click="mobileMenuOpen = false" class="block w-full p-2">About</a>
-          <a href="/services.html" @click="mobileMenuOpen = false" class="block w-full p-2">Services</a>
-          <a href="/contact.html" @click="mobileMenuOpen = false" class="block w-full p-2">Contact</a>
-        </div>
-      </nav>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">🐟</div>
+      <div class="nav-logo-text">La <span>Zienda</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#chi-siamo">Chi siamo</a></li>
+      <li><a href="#prodotti">Prodotti</a></li>
+      <li><a href="#sedi">Le nostre sedi</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <a href="#contatti" class="btn-primary" style="padding:0.6rem 1.5rem;font-size:0.88rem;">Contattaci</a>
+  </nav>
+
+  <!-- HERO 3D -->
+  <section id="hero">
+    <canvas id="canvas-hero"></canvas>
+    <div id="bubbles"></div>
+
+    <div class="hero-content">
+      <div class="badge">🎣 Dal mare alla tua tavola</div>
+      <h1 class="hero-title">La Zienda</h1>
+      <p class="hero-subtitle">Il Peschereccio di Qualità in Piemonte</p>
+      <p class="hero-name">Martino Nicola &nbsp;·&nbsp; Donato Martino</p>
+      <div class="hero-cta">
+        <a href="#sedi" class="btn-primary">Trova la sede più vicina</a>
+        <a href="#prodotti" class="btn-outline">I nostri prodotti</a>
+      </div>
     </div>
-  </header>
-  
-  <main class="flex-auto">
-    
-    <!-- Hero Section - AI: Use py-20 sm:py-32 for consistent spacing -->
-    <section class="relative overflow-hidden py-20 sm:py-32">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl mx-auto text-center">
-          <!-- Main Headline - AI: Make this compelling -->
-          <h1 class="font-display text-4xl tracking-tight text-slate-900 sm:text-6xl">
-            Welcome to [Business Name]
-          </h1>
-          <!-- Subheadline - AI: Explain what you do -->
-          <p class="mt-6 text-lg tracking-tight text-slate-700">
-            [Describe your business value proposition in 1-2 sentences. What problems do you solve?]
+
+    <div class="ocean-waves">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:80px;width:100%">
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#0d2847" opacity="0.8"/>
+        <path d="M0,55 C360,20 720,70 1080,30 C1260,10 1380,50 1440,55 L1440,80 L0,80 Z" fill="#0d2847"/>
+      </svg>
+    </div>
+
+    <div class="scroll-down">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+      <span>SCOPRI</span>
+    </div>
+  </section>
+
+  <!-- CHI SIAMO -->
+  <section id="chi-siamo">
+    <div class="container">
+      <div class="chi-grid">
+        <div class="reveal">
+          <span class="section-label">Chi siamo</span>
+          <h2 class="section-title">Una <span>passione</span><br>per il pesce fresco</h2>
+          <p class="section-body">
+            La Zienda nasce dalla dedizione di Martino Nicola e Donato Martino per portare
+            il miglior pesce fresco nelle province di Asti, Alessandria e Alba.
+            Con tre autonegozi itineranti, raggiungiamo ogni angolo del Piemonte per
+            offrire prodotti ittici di prima qualità, selezionati ogni giorno con cura.
           </p>
-          <!-- Hero Buttons - AI: Keep consistent with rounded-full bg-blue-600 px-6 py-3 pattern -->
-          <div class="mt-10 flex justify-center gap-x-6">
-            <a href="/contact.html" class="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700">
-              Get Started
-            </a>
-            <a href="/about.html" class="rounded-full bg-slate-100 px-6 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-200">
-              Learn More
-            </a>
-          </div>
-        </div>
-        <!-- Hero Image - AI: Replace with business-relevant image -->
-        <div class="mt-16 max-w-4xl mx-auto">
-          <img src="https://placehold.co/1024x576/e2e8f0/64748b?text=[Hero+Image]" 
-               alt="[Describe the hero image]" 
-               class="rounded-lg shadow-xl">
-        </div>
-      </div>
-    </section>
-    
-    <!-- Features Section - AI: Use py-20 sm:py-32 for consistent spacing -->
-    <section class="py-20 sm:py-32 bg-slate-50">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <h2 class="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-            Why Choose [Business Name]
-          </h2>
-          <p class="mt-4 text-lg tracking-tight text-slate-700">
-            [What makes your business unique or better than competitors]
+          <p class="section-body" style="margin-top:1rem;">
+            La tradizione del peschereccio si unisce alla comodità di un servizio moderno:
+            pesce fresco come se fossi al mare, a pochi passi da casa tua.
           </p>
+          <a href="#sedi" class="btn-primary" style="margin-top:2rem;">Le nostre sedi →</a>
         </div>
-        
-        <!-- Feature Cards - AI: Maintain rounded-2xl p-8 shadow-sm pattern -->
-        <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="bg-white rounded-2xl p-8 shadow-sm">
-            <div class="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-slate-900">[Feature/Benefit]</h3>
-            <p class="mt-2 text-slate-600">[Explain this feature or benefit to customers]</p>
-          </div>
-          
-          <div class="bg-white rounded-2xl p-8 shadow-sm">
-            <div class="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-slate-900">[Feature/Benefit]</h3>
-            <p class="mt-2 text-slate-600">[Explain this feature or benefit to customers]</p>
-          </div>
-          
-          <div class="bg-white rounded-2xl p-8 shadow-sm">
-            <div class="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-slate-900">[Feature/Benefit]</h3>
-            <p class="mt-2 text-slate-600">[Explain this feature or benefit to customers]</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Testimonials Section - AI: Use py-20 sm:py-32 for consistent spacing -->
-    <section class="py-20 sm:py-32">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <h2 class="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-            What Our Customers Say
-          </h2>
-          <p class="mt-4 text-lg tracking-tight text-slate-700">
-            [Real feedback from satisfied customers]
-          </p>
-        </div>
-        
-        <!-- Testimonial Cards - AI: Maintain rounded-2xl p-6 shadow-sm pattern -->
-        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:gap-8 lg:mt-20 lg:max-w-none lg:grid-cols-3">
-          <div class="rounded-2xl bg-white p-6 shadow-sm">
-            <p class="text-lg text-slate-900">"[Customer testimonial - what they loved about your service]"</p>
-            <div class="mt-6 flex items-center gap-x-4">
-              <div class="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold">
-                [I]
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-slate-900">[Customer Name]</p>
-                <p class="text-sm text-slate-600">[Title/Company]</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="rounded-2xl bg-white p-6 shadow-sm">
-            <p class="text-lg text-slate-900">"[Customer testimonial - specific results or benefits]"</p>
-            <div class="mt-6 flex items-center gap-x-4">
-              <div class="h-10 w-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-semibold">
-                [I]
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-slate-900">[Customer Name]</p>
-                <p class="text-sm text-slate-600">[Title/Company]</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="rounded-2xl bg-white p-6 shadow-sm">
-            <p class="text-lg text-slate-900">"[Customer testimonial - why they recommend you]"</p>
-            <div class="mt-6 flex items-center gap-x-4">
-              <div class="h-10 w-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-semibold">
-                [I]
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-slate-900">[Customer Name]</p>
-                <p class="text-sm text-slate-600">[Title/Company]</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Call to Action Section - AI: Use contrasting white button on blue background -->
-    <section class="bg-blue-600 py-16">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <h2 class="font-display text-3xl tracking-tight text-white sm:text-4xl">
-            Ready to Get Started?
-          </h2>
-          <p class="mt-4 text-lg tracking-tight text-blue-100">
-            [Add a compelling call to action message]
-          </p>
-          <a href="/contact.html" class="mt-8 inline-block rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-600 hover:bg-blue-50">
-            Contact Us Today
-          </a>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Contact Section - AI: Use py-20 sm:py-32 for consistent spacing -->
-    <section id="contact" class="py-20 sm:py-32">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <h2 class="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-            Contact Us
-          </h2>
-          <p class="mt-4 text-lg tracking-tight text-slate-700">
-            [How customers can reach you]
-          </p>
-        </div>
-        
-        <!-- Contact Information - AI: Add real contact details -->
-        <div class="mt-16 max-w-xl mx-auto">
-          <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-200">
-            <div class="space-y-4">
-              <p class="text-slate-600">
-                <strong>Phone:</strong> [Your phone number]
-              </p>
-              <p class="text-slate-600">
-                <strong>Email:</strong> [Your email]
-              </p>
-              <p class="text-slate-600">
-                <strong>Address:</strong> [Your business address]
-              </p>
-              <p class="text-slate-600">
-                <strong>Hours:</strong> [Your business hours]
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Pricing Section - AI: Use py-20 sm:py-32 for consistent spacing, remove if not needed -->
-    <section class="bg-slate-50 py-20 sm:py-32">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-            Simple, Transparent Pricing
-          </h2>
-          <p class="mt-4 text-lg text-slate-700">
-            [Pricing subtitle or value proposition]
-          </p>
-        </div>
-        
-        <!-- Pricing Cards - AI: Maintain rounded-2xl border p-8 pattern, highlight popular plan -->
-        <div class="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-6">
-          <!-- Basic Plan -->
-          <div class="rounded-2xl border border-slate-200 p-8">
-            <h3 class="text-lg font-semibold text-slate-900">[Plan Name]</h3>
-            <p class="mt-4 text-sm text-slate-700">[Perfect for who?]</p>
-            <p class="mt-8">
-              <span class="text-4xl font-bold text-slate-900">$[X]</span>
-              <span class="text-base font-medium text-slate-700">/month</span>
+
+        <div style="perspective:1000px;" class="reveal reveal-delay-2">
+          <div class="tilt-inner" id="tilt-inner">
+            <div style="font-size:4rem;margin-bottom:1.5rem;text-align:center;">🐠</div>
+            <h3 style="color:white;font-weight:800;text-align:center;margin-bottom:0.5rem;font-size:1.3rem;">Qualità ogni giorno</h3>
+            <p style="color:rgba(226,232,240,0.6);text-align:center;font-size:0.9rem;margin-bottom:1.5rem;">
+              Riforniti quotidianamente dai mercati ittici più freschi del Nord Italia
             </p>
-            <ul class="mt-8 space-y-4 text-sm text-slate-700">
-              <li class="flex gap-x-3">
-                <svg class="h-6 w-5 flex-none text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                </svg>
-                [Feature included]
-              </li>
-              <li class="flex gap-x-3">
-                <svg class="h-6 w-5 flex-none text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                </svg>
-                [Feature included]
-              </li>
-            </ul>
-            <a href="/contact.html" class="mt-8 block w-full rounded-full bg-slate-900 px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-slate-700">
-              Get Started
-            </a>
-          </div>
-          
-          <!-- Popular Plan -->
-          <div class="rounded-2xl border border-blue-600 p-8 shadow-lg">
-            <h3 class="text-lg font-semibold text-slate-900">[Plan Name]</h3>
-            <p class="mt-4 text-sm text-slate-700">[Most popular choice]</p>
-            <p class="mt-8">
-              <span class="text-4xl font-bold text-slate-900">$[X]</span>
-              <span class="text-base font-medium text-slate-700">/month</span>
-            </p>
-            <ul class="mt-8 space-y-4 text-sm text-slate-700">
-              <li class="flex gap-x-3">
-                <svg class="h-6 w-5 flex-none text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                </svg>
-                [Everything in basic]
-              </li>
-              <li class="flex gap-x-3">
-                <svg class="h-6 w-5 flex-none text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                </svg>
-                [Additional feature]
-              </li>
-            </ul>
-            <a href="/contact.html" class="mt-8 block w-full rounded-full bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-blue-700">
-              Get Started
-            </a>
-          </div>
-          
-          <!-- Enterprise Plan -->
-          <div class="rounded-2xl border border-slate-200 p-8">
-            <h3 class="text-lg font-semibold text-slate-900">[Plan Name]</h3>
-            <p class="mt-4 text-sm text-slate-700">[For larger needs]</p>
-            <p class="mt-8">
-              <span class="text-4xl font-bold text-slate-900">Custom</span>
-            </p>
-            <ul class="mt-8 space-y-4 text-sm text-slate-700">
-              <li class="flex gap-x-3">
-                <svg class="h-6 w-5 flex-none text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                </svg>
-                [Everything included]
-              </li>
-              <li class="flex gap-x-3">
-                <svg class="h-6 w-5 flex-none text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                </svg>
-                [Custom solutions]
-              </li>
-            </ul>
-            <a href="/contact.html" class="mt-8 block w-full rounded-full bg-slate-900 px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-slate-700">
-              Contact Sales
-            </a>
+            <div class="stat-grid">
+              <div class="stat-item">
+                <div class="stat-num">3</div>
+                <div class="stat-label">Autonegozi</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">15+</div>
+                <div class="stat-label">Anni di esperienza</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">50+</div>
+                <div class="stat-label">Varietà di pesce</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">3</div>
+                <div class="stat-label">Province servite</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-    
-  </main>
-  
-  <!-- Footer -->
-  <footer class="bg-slate-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="py-16">
-        <!-- Footer Logo/Name -->
-        <div class="flex justify-center">
-          <a href="#" class="text-slate-900 font-bold text-xl">[Business Name]</a>
-        </div>
-        <!-- Footer Navigation - AI: Keep simple -->
-        <nav class="mt-10 text-sm" aria-label="Footer navigation">
-          <div class="-my-1 flex justify-center gap-x-6">
-            <a href="/about.html" class="rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">About</a>
-            <a href="/services.html" class="rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">Services</a>
-            <a href="/contact.html" class="rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">Contact</a>
-          </div>
-        </nav>
-      </div>
-      <div class="flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between">
-        <div class="flex gap-x-6">
-          <!-- AI: Add social media links if needed -->
-          <a href="#" class="group" aria-label="Twitter">
-            <svg class="h-6 w-6 fill-slate-500 group-hover:fill-slate-700" viewBox="0 0 24 24">
-              <path d="M13.3174 10.7749L19.1457 4H17.7646L12.7039 9.88256L8.66193 4H4L10.1122 12.8955L4 20H5.38119L10.7254 13.7878L14.994 20H19.656L13.3171 10.7749H13.3174ZM11.4257 12.9738L10.8064 12.0881L5.87886 5.03974H8.00029L11.9769 10.728L12.5962 11.6137L17.7652 19.0075H15.6438L11.4257 12.9742V12.9738Z"/>
-            </svg>
-          </a>
-          <a href="#" class="group" aria-label="GitHub">
-            <svg class="h-6 w-6 fill-slate-500 group-hover:fill-slate-700" viewBox="0 0 24 24">
-              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"/>
-            </svg>
-          </a>
-        </div>
-        <p class="mt-6 text-sm text-slate-500 sm:mt-0">
-          Copyright &copy; <span x-text="new Date().getFullYear()"></span> [Business Name]. All rights reserved.
+    </div>
+  </section>
+
+  <!-- PRODOTTI -->
+  <section id="prodotti">
+    <div class="container">
+      <div style="text-align:center;" class="reveal">
+        <span class="section-label">I nostri prodotti</span>
+        <h2 class="section-title">Fresco ogni <span>mattina</span></h2>
+        <p class="section-body" style="margin:0 auto;text-align:center;">
+          Selezioniamo ogni giorno i migliori prodotti ittici per portare sulla tua tavola
+          il sapore autentico del mare.
         </p>
       </div>
+      <div class="prodotti-grid">
+        <div class="prodotto-card reveal reveal-delay-1">
+          <span class="prodotto-emoji">🐟</span>
+          <div class="prodotto-nome">Pesce Fresco</div>
+          <div class="prodotto-desc">Branzino, orata, spigola e tantissime varietà selezionate ogni giorno</div>
+        </div>
+        <div class="prodotto-card reveal reveal-delay-2">
+          <span class="prodotto-emoji">🦐</span>
+          <div class="prodotto-nome">Gamberi & Crostacei</div>
+          <div class="prodotto-desc">Gamberi, mazzancolle, scampi e aragoste di prima scelta</div>
+        </div>
+        <div class="prodotto-card reveal reveal-delay-3">
+          <span class="prodotto-emoji">🦑</span>
+          <div class="prodotto-nome">Molluschi</div>
+          <div class="prodotto-desc">Calamari, seppie, totani, polpi freschi del giorno</div>
+        </div>
+        <div class="prodotto-card reveal reveal-delay-4">
+          <span class="prodotto-emoji">🦪</span>
+          <div class="prodotto-nome">Frutti di Mare</div>
+          <div class="prodotto-desc">Cozze, vongole, ostriche e frutti di mare freschi</div>
+        </div>
+        <div class="prodotto-card reveal reveal-delay-1">
+          <span class="prodotto-emoji">🐡</span>
+          <div class="prodotto-nome">Pesce Azzurro</div>
+          <div class="prodotto-desc">Sardine, alici, sgombro e tonno fresco ricco di Omega-3</div>
+        </div>
+        <div class="prodotto-card reveal reveal-delay-2">
+          <span class="prodotto-emoji">🫙</span>
+          <div class="prodotto-nome">Prodotti Trasformati</div>
+          <div class="prodotto-desc">Marinati, sotto sale, affumicati e preparazioni pronte</div>
+        </div>
+        <div class="prodotto-card reveal reveal-delay-3">
+          <span class="prodotto-emoji">🍣</span>
+          <div class="prodotto-nome">Salmone</div>
+          <div class="prodotto-desc">Salmone fresco, affumicato e in tranci, ideale per ogni ricetta</div>
+        </div>
+        <div class="prodotto-card reveal reveal-delay-4">
+          <span class="prodotto-emoji">❄️</span>
+          <div class="prodotto-nome">Pesce Surgelato</div>
+          <div class="prodotto-desc">Selezione premium di prodotti surgelati ad alta qualità</div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- SEDI -->
+  <section id="sedi">
+    <div class="container" style="position:relative;z-index:1;">
+      <div style="text-align:center;" class="reveal">
+        <span class="section-label">Dove trovarci</span>
+        <h2 class="section-title">I nostri <span>3 autonegozi</span></h2>
+        <p class="section-body" style="margin:0 auto;text-align:center;">
+          Tre sedi nelle province piemontesi per portare il pesce fresco vicino a te.
+          Gli autonegozi itineranti coprono ogni area con punti fissi e giri settimanali.
+        </p>
+      </div>
+
+      <div class="sedi-grid">
+        <!-- ASTI -->
+        <div class="reveal reveal-delay-1">
+          <div class="sede-inner">
+            <div class="sede-glow"></div>
+            <div class="sede-number">01</div>
+            <div class="sede-citta">Asti</div>
+            <div class="sede-provincia">Provincia di Asti · AT</div>
+            <div class="sede-divider"></div>
+            <div class="sede-info">
+              <div class="sede-info-item">
+                <span class="sede-info-icon">📍</span>
+                <span>Mercato di Asti e comuni della provincia</span>
+              </div>
+              <div class="sede-info-item">
+                <span class="sede-info-icon">🕐</span>
+                <span>Lun – Sab: dalle 7:00 alle 13:00</span>
+              </div>
+              <div class="sede-info-item">
+                <span class="sede-info-icon">📦</span>
+                <span>Rifornimento fresco ogni mattina</span>
+              </div>
+            </div>
+            <span class="sede-tag">🐟 Pesce fresco quotidiano</span>
+          </div>
+        </div>
+
+        <!-- ALESSANDRIA -->
+        <div class="reveal reveal-delay-2">
+          <div class="sede-inner" style="border-color:rgba(245,158,11,0.35);">
+            <div class="sede-glow" style="background:radial-gradient(circle,rgba(245,158,11,0.15),transparent 70%);"></div>
+            <div class="sede-number" style="background:linear-gradient(135deg,rgba(245,158,11,0.4),rgba(245,158,11,0.1));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">02</div>
+            <div class="sede-citta">Alessandria</div>
+            <div class="sede-provincia">Provincia di Alessandria · AL</div>
+            <div class="sede-divider" style="background:linear-gradient(90deg,transparent,rgba(245,158,11,0.3),transparent);"></div>
+            <div class="sede-info">
+              <div class="sede-info-item">
+                <span class="sede-info-icon" style="color:var(--gold-light);">📍</span>
+                <span>Mercato di Alessandria e paesi limitrofi</span>
+              </div>
+              <div class="sede-info-item">
+                <span class="sede-info-icon" style="color:var(--gold-light);">🕐</span>
+                <span>Lun – Sab: dalle 7:00 alle 13:00</span>
+              </div>
+              <div class="sede-info-item">
+                <span class="sede-info-icon" style="color:var(--gold-light);">📦</span>
+                <span>Rifornimento fresco ogni mattina</span>
+              </div>
+            </div>
+            <span class="sede-tag" style="border-color:rgba(245,158,11,0.4);color:var(--gold-light);background:rgba(245,158,11,0.08);">⭐ Sede principale</span>
+          </div>
+        </div>
+
+        <!-- ALBA -->
+        <div class="reveal reveal-delay-3">
+          <div class="sede-inner" style="border-color:rgba(16,185,129,0.25);">
+            <div class="sede-glow" style="background:radial-gradient(circle,rgba(16,185,129,0.15),transparent 70%);"></div>
+            <div class="sede-number" style="background:linear-gradient(135deg,rgba(16,185,129,0.4),rgba(16,185,129,0.1));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">03</div>
+            <div class="sede-citta">Alba</div>
+            <div class="sede-provincia">Provincia di Cuneo · CN</div>
+            <div class="sede-divider" style="background:linear-gradient(90deg,transparent,rgba(16,185,129,0.3),transparent);"></div>
+            <div class="sede-info">
+              <div class="sede-info-item">
+                <span class="sede-info-icon" style="color:#34d399;">📍</span>
+                <span>Mercato di Alba e comuni delle Langhe</span>
+              </div>
+              <div class="sede-info-item">
+                <span class="sede-info-icon" style="color:#34d399;">🕐</span>
+                <span>Mar – Sab: dalle 7:00 alle 13:00</span>
+              </div>
+              <div class="sede-info-item">
+                <span class="sede-info-icon" style="color:#34d399;">📦</span>
+                <span>Rifornimento fresco ogni mattina</span>
+              </div>
+            </div>
+            <span class="sede-tag" style="border-color:rgba(16,185,129,0.4);color:#34d399;background:rgba(16,185,129,0.08);">🌿 Zona Langhe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERCHE NOI -->
+  <section id="perche">
+    <div class="container">
+      <div style="text-align:center;" class="reveal">
+        <span class="section-label">Perché sceglierci</span>
+        <h2 class="section-title">La <span>differenza</span> che si sente</h2>
+      </div>
+      <div class="perche-grid">
+        <div class="perche-card reveal reveal-delay-1">
+          <div class="perche-icon">🌊</div>
+          <div class="perche-title">Freschezza garantita</div>
+          <div class="perche-desc">Il pesce arriva ogni mattina dai mercati ittici. Nessun prodotto vecchio di più di 24 ore.</div>
+        </div>
+        <div class="perche-card reveal reveal-delay-2">
+          <div class="perche-icon">🚚</div>
+          <div class="perche-title">Servizio itinerante</div>
+          <div class="perche-desc">I nostri autonegozi arrivano dove sei tu. Nessun chilometro da fare per trovare pesce fresco di qualità.</div>
+        </div>
+        <div class="perche-card reveal reveal-delay-3">
+          <div class="perche-icon">💬</div>
+          <div class="perche-title">Esperienza e passione</div>
+          <div class="perche-desc">Anni di esperienza nel settore e amore per il mare ci rendono il punto di riferimento in Piemonte.</div>
+        </div>
+        <div class="perche-card reveal reveal-delay-4">
+          <div class="perche-icon">💰</div>
+          <div class="perche-title">Prezzi onesti</div>
+          <div class="perche-desc">Senza intermediari, offriamo la migliore qualità al prezzo più giusto. La filiera corta fa la differenza.</div>
+        </div>
+        <div class="perche-card reveal reveal-delay-1">
+          <div class="perche-icon">🏆</div>
+          <div class="perche-title">Varietà ampia</div>
+          <div class="perche-desc">Oltre 50 tipologie di pesce, crostacei e molluschi. Trovi sempre quello che cerchi.</div>
+        </div>
+        <div class="perche-card reveal reveal-delay-2">
+          <div class="perche-icon">📋</div>
+          <div class="perche-title">Consigli e ricette</div>
+          <div class="perche-desc">Non sai come cucinarlo? Ti consigliamo noi. Dalla pulizia alla ricetta perfetta per ogni pesce.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section id="contatti">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Contattaci</span>
+        <h2 class="section-title">Siamo <span>qui</span> per te</h2>
+        <p class="section-body" style="margin:0 auto 1rem;text-align:center;">
+          Vuoi sapere dove siamo questa settimana? Hai bisogno di un ordine speciale?
+          Contattaci e ti risponderemo subito.
+        </p>
+      </div>
+      <div class="contatti-cards">
+        <div class="contatto-card reveal reveal-delay-1">
+          <div class="contatto-icon">📞</div>
+          <div class="contatto-label">Telefono</div>
+          <div class="contatto-value">+39 — — —</div>
+        </div>
+        <div class="contatto-card reveal reveal-delay-2">
+          <div class="contatto-icon">💬</div>
+          <div class="contatto-label">WhatsApp</div>
+          <div class="contatto-value">Scrivici su WhatsApp</div>
+        </div>
+        <div class="contatto-card reveal reveal-delay-3">
+          <div class="contatto-icon">📍</div>
+          <div class="contatto-label">Province</div>
+          <div class="contatto-value">Asti · Alessandria · Alba</div>
+        </div>
+        <div class="contatto-card reveal reveal-delay-4">
+          <div class="contatto-icon">🕐</div>
+          <div class="contatto-label">Orari</div>
+          <div class="contatto-value">Lun – Sab &nbsp; 7:00 – 13:00</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">La <span>Zienda</span></div>
+    <div class="footer-tagline">Il Peschereccio di Martino Nicola · Dal mare alla tua tavola</div>
+    <ul class="footer-links">
+      <li><a href="#chi-siamo">Chi siamo</a></li>
+      <li><a href="#prodotti">Prodotti</a></li>
+      <li><a href="#sedi">Le nostre sedi</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <p class="footer-copy">© <span id="year"></span> La Zienda – Peschereccio di Martino Nicola. Tutti i diritti riservati.</p>
   </footer>
-  
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // NAV scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // THREE.JS OCEAN
+    (function() {
+      const canvas = document.getElementById('canvas-hero');
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, canvas.offsetWidth / canvas.offsetHeight, 0.1, 1000);
+      camera.position.set(0, 2, 8);
+
+      // Ocean waves mesh
+      const waveGeo = new THREE.PlaneGeometry(30, 30, 80, 80);
+      const waveMat = new THREE.MeshPhongMaterial({
+        color: 0x0e7490,
+        transparent: true,
+        opacity: 0.35,
+        shininess: 100,
+        specular: new THREE.Color(0x06b6d4),
+        side: THREE.DoubleSide
+      });
+      const wave = new THREE.Mesh(waveGeo, waveMat);
+      wave.rotation.x = -Math.PI / 2.8;
+      wave.position.y = -2;
+      scene.add(wave);
+
+      // Wireframe overlay
+      const wireMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, wireframe: true, transparent: true, opacity: 0.07 });
+      const wireframe = new THREE.Mesh(waveGeo, wireMat);
+      wireframe.rotation.x = -Math.PI / 2.8;
+      wireframe.position.y = -2;
+      scene.add(wireframe);
+
+      // Lights
+      scene.add(new THREE.AmbientLight(0x0a1628, 2));
+      const dLight = new THREE.DirectionalLight(0x06b6d4, 3);
+      dLight.position.set(5, 10, 5);
+      scene.add(dLight);
+      const pLight = new THREE.PointLight(0xfcd34d, 2, 20);
+      pLight.position.set(-3, 3, 3);
+      scene.add(pLight);
+
+      // Floating particles
+      const particles = [];
+      for (let i = 0; i < 60; i++) {
+        const geo = new THREE.SphereGeometry(Math.random() * 0.06 + 0.02, 6, 6);
+        const mat = new THREE.MeshBasicMaterial({
+          color: Math.random() > 0.5 ? 0x06b6d4 : 0xfcd34d,
+          transparent: true,
+          opacity: Math.random() * 0.6 + 0.2
+        });
+        const p = new THREE.Mesh(geo, mat);
+        p.position.set(
+          (Math.random() - 0.5) * 20,
+          (Math.random() - 0.5) * 4,
+          (Math.random() - 0.5) * 10
+        );
+        p.userData = {
+          vx: (Math.random() - 0.5) * 0.01,
+          vy: (Math.random() - 0.5) * 0.005,
+          vz: (Math.random() - 0.5) * 0.008
+        };
+        scene.add(p);
+        particles.push(p);
+      }
+
+      const pos = waveGeo.attributes.position;
+      const count = pos.count;
+      let t = 0;
+      let mouseX = 0, mouseY = 0;
+
+      window.addEventListener('mousemove', e => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 0.3;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        t += 0.012;
+
+        for (let i = 0; i < count; i++) {
+          const x = pos.getX(i);
+          const z = pos.getZ(i);
+          const y = Math.sin(x * 0.4 + t) * 0.4
+                  + Math.sin(z * 0.3 + t * 0.8) * 0.3
+                  + Math.sin((x + z) * 0.2 + t * 1.2) * 0.15;
+          pos.setY(i, y);
+        }
+        pos.needsUpdate = true;
+        waveGeo.computeVertexNormals();
+
+        camera.position.x += (mouseX - camera.position.x) * 0.02;
+        camera.position.y += (-mouseY + 2 - camera.position.y) * 0.02;
+        camera.lookAt(0, 0, 0);
+
+        particles.forEach(p => {
+          p.position.x += p.userData.vx;
+          p.position.y += p.userData.vy;
+          p.position.z += p.userData.vz;
+          if (Math.abs(p.position.x) > 12) p.userData.vx *= -1;
+          if (Math.abs(p.position.y) > 4)  p.userData.vy *= -1;
+          if (Math.abs(p.position.z) > 6)  p.userData.vz *= -1;
+        });
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+        camera.aspect = canvas.offsetWidth / canvas.offsetHeight;
+        camera.updateProjectionMatrix();
+      });
+    })();
+
+    // BUBBLES
+    const bubblesEl = document.getElementById('bubbles');
+    for (let i = 0; i < 18; i++) {
+      const b = document.createElement('div');
+      b.className = 'bubble';
+      const size = Math.random() * 40 + 10;
+      b.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;bottom:${Math.random()*30}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*5}s;`;
+      bubblesEl.appendChild(b);
+    }
+
+    // 3D TILT CARD
+    const tiltInner = document.getElementById('tilt-inner');
+    if (tiltInner) {
+      tiltInner.parentElement.addEventListener('mousemove', e => {
+        const rect = tiltInner.getBoundingClientRect();
+        const rx = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+        const ry = ((e.clientX - rect.left) / rect.width - 0.5) * -20;
+        tiltInner.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      tiltInner.parentElement.addEventListener('mouseleave', () => {
+        tiltInner.style.transform = 'rotateX(0) rotateY(0)';
+      });
+    }
+
+    // REVEAL ON SCROLL
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+  </script>
 </body>
 </html>
