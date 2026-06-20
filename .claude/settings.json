@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "enableAllProjectMcpServers": false,
+  "enabledMcpjsonServers": [
+    "github"
+  ],
+  "disabledMcpjsonServers": [
+    "Canva",
+    "Gmail",
+    "Google_Drive",
+    "Klaviyo",
+    "Shopify",
+    "higgsfield"
+  ]
+}
