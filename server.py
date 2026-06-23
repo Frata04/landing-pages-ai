@@ -1,8 +1,15 @@
 """
 FastMCP server per landing-pages-ai.
 
-Espone alcuni tool via Streamable HTTP, protetti da un bearer token statico,
-pronti per essere collegati a Lovable come "custom chat connector" (MCP server).
+Espone alcuni tool via Streamable HTTP, pronti per essere collegati a Lovable
+come "custom chat connector" (MCP server).
+
+Due modalità di autenticazione (scelte tramite variabili d'ambiente):
+
+  • OAuth (GitHub)  -> consigliata, è il default di Lovable.
+      Imposta GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET e BASE_URL.
+  • Bearer token    -> fallback semplice se le variabili GitHub non ci sono.
+      Imposta MCP_TOKEN.
 
 Avvio locale:
     python server.py
@@ -13,25 +20,42 @@ Endpoint MCP:  http://<host>:<port>/mcp
 import os
 
 from fastmcp import FastMCP
-from fastmcp.server.auth.providers.jwt import StaticTokenVerifier
 
-# --- Autenticazione -------------------------------------------------------
-# Lovable richiede (consigliato) un'autenticazione per i server MCP remoti.
-# Usiamo un bearer token statico: lo stesso valore va inserito in Lovable.
-# Imposta MCP_TOKEN come variabile d'ambiente in produzione.
-MCP_TOKEN = os.environ.get("MCP_TOKEN", "dev-change-me-please")
 
-verifier = StaticTokenVerifier(
-    tokens={
-        MCP_TOKEN: {
-            "client_id": "lovable",
-            "scopes": ["landing:read", "landing:write"],
-        }
-    },
-    required_scopes=["landing:read"],
-)
+def build_auth():
+    """Sceglie il provider di autenticazione in base alle variabili d'ambiente."""
+    gh_client_id = os.environ.get("GITHUB_CLIENT_ID")
+    gh_client_secret = os.environ.get("GITHUB_CLIENT_SECRET")
+    base_url = os.environ.get("BASE_URL")  # es. https://tuo-dominio.com
 
-mcp = FastMCP("Landing Pages AI", auth=verifier)
+    # --- OAuth via GitHub (il flusso che Lovable usa di default) ----------
+    if gh_client_id and gh_client_secret and base_url:
+        from fastmcp.server.auth.providers.github import GitHubProvider
+
+        return GitHubProvider(
+            client_id=gh_client_id,
+            client_secret=gh_client_secret,
+            base_url=base_url,
+            # La callback URL da registrare nella GitHub OAuth App è:
+            #   {BASE_URL}/auth/callback
+        )
+
+    # --- Fallback: bearer token statico -----------------------------------
+    from fastmcp.server.auth.providers.jwt import StaticTokenVerifier
+
+    mcp_token = os.environ.get("MCP_TOKEN", "dev-change-me-please")
+    return StaticTokenVerifier(
+        tokens={
+            mcp_token: {
+                "client_id": "lovable",
+                "scopes": ["landing:read", "landing:write"],
+            }
+        },
+        required_scopes=["landing:read"],
+    )
+
+
+mcp = FastMCP("Landing Pages AI", auth=build_auth())
 
 
 # --- Tool -----------------------------------------------------------------
