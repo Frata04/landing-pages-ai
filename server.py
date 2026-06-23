@@ -55,47 +55,48 @@ def build_auth():
     )
 
 
-mcp = FastMCP("Landing Pages AI", auth=build_auth())
+mcp = FastMCP("VSL Script AI", auth=build_auth())
 
 
-# --- Tool -----------------------------------------------------------------
-@mcp.tool
-def list_templates() -> list[dict]:
-    """Elenca i template di landing page disponibili."""
-    return [
-        {"id": "saas-hero", "name": "SaaS Hero", "sections": ["hero", "features", "pricing", "cta"]},
-        {"id": "lead-gen", "name": "Lead Generation", "sections": ["hero", "benefits", "form"]},
-        {"id": "product-launch", "name": "Product Launch", "sections": ["hero", "video", "faq", "cta"]},
-    ]
+# --- Tool VSL -------------------------------------------------------------
+# I tool generano gli script chiamando Claude (vedi vsl.py). Richiedono
+# ANTHROPIC_API_KEY impostata nell'ambiente del server.
+import vsl  # noqa: E402
 
 
 @mcp.tool
-def generate_copy(product: str, audience: str, tone: str = "professional") -> dict:
+def genera_vsl_script(
+    prodotto: str,
+    pubblico: str,
+    problema: str = "",
+    offerta: str = "",
+    durata: str = "medio",
+    tono: str = "persuasivo",
+) -> str:
     """
-    Genera bozze di testi (copy) per una landing page.
+    Genera uno script VSL (Video Sales Letter) completo per un prodotto ecommerce.
 
     Args:
-        product: cosa stai promuovendo (es. "app di fitness").
-        audience: pubblico target (es. "runner principianti").
-        tone: stile del testo (es. "professional", "friendly", "bold").
+        prodotto: cosa stai vendendo (es. "crema viso anti-età").
+        pubblico: a chi ti rivolgi (es. "donne 35-55 attente alla pelle").
+        problema: il problema/dolore principale da agitare (opzionale).
+        offerta: dettagli di offerta, bonus, garanzia, prezzo (opzionale).
+        durata: "breve" (~60s), "medio" (~2-3min) o "lungo" (~5min+).
+        tono: stile desiderato (es. "persuasivo", "amichevole", "diretto").
     """
-    return {
-        "headline": f"{product.capitalize()} pensato per {audience}",
-        "subheadline": f"La soluzione {tone} che {audience} stavano aspettando.",
-        "cta": "Inizia gratis",
-        "tone": tone,
-    }
+    return vsl.genera_vsl_script(prodotto, pubblico, problema, offerta, durata, tono)
 
 
 @mcp.tool
-def suggest_sections(goal: str) -> list[str]:
-    """Suggerisce le sezioni di una landing page in base all'obiettivo (es. 'vendite', 'iscrizioni')."""
-    base = ["hero", "social-proof", "cta"]
-    if goal.lower() in ("vendite", "sales"):
-        return ["hero", "features", "pricing", "testimonials", "faq", "cta"]
-    if goal.lower() in ("iscrizioni", "signup", "lead"):
-        return ["hero", "benefits", "form", "social-proof"]
-    return base
+def genera_hook(prodotto: str, pubblico: str, n: int = 5) -> str:
+    """Genera n hook (aperture) alternativi per una VSL."""
+    return vsl.genera_hook(prodotto, pubblico, n)
+
+
+@mcp.tool
+def migliora_script(script: str, obiettivo: str = "aumentare le conversioni") -> str:
+    """Migliora/riscrive uno script VSL esistente verso un obiettivo."""
+    return vsl.migliora_script(script, obiettivo)
 
 
 if __name__ == "__main__":
