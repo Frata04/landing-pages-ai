@@ -1,0 +1,256 @@
+<style>
+@font-face{font-family:HmManrope;src:url(/mx/fonts/manrope-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}@font-face{font-family:HmManrope;src:url(/mx/fonts/manrope-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}@font-face{font-family:HmManrope;src:url(/mx/fonts/manrope-latin-700-normal.woff2) format("woff2");font-weight:700 900;font-display:swap}
+.hm3 a{color:#F0D77E}.hm3 a:hover{color:#FFE9A3}.hm3{--gold:#C9A227;--hi:#F0D77E;--deep:#8A6A0A;--ink:#1E1624;--night:#0E0A12;--n2:#16101B;--cream:#FBF4E4;--mute:#4E4655;--mute-d:#CFC6D4;font-family:HmManrope,Manrope,system-ui,sans-serif;color:#FBF6EE;background:var(--night);font-size:19px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}.hm3 *{box-sizing:border-box}.hm3 h1,.hm3 h2,.hm3 h3,.hm3 p,.hm3 ul,.hm3 ol,.hm3 figure,.hm3 blockquote{margin:0}.hm3 ul,.hm3 ol{padding:0;list-style:none}.hm3 .wrap{width:100%;max-width:1220px;margin:0 auto;padding:0 24px}.hm3 .eye{align-self:flex-start;display:inline-block;padding:8px 16px;border-radius:99px;background:rgba(240,215,126,.13);color:var(--hi);font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase}.hm3 .eye.lt{background:#FFF0C2;color:var(--deep)}.hm3 .h2{font-size:clamp(36px,4.6vw,60px);line-height:1.05;font-weight:800;letter-spacing:-.03em}.hm3 .gold-t{background:linear-gradient(180deg,#FFF1B8 0%,#F0D77E 40%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.hm3 .cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:64px;padding:0 32px;border:0;border-radius:18px;background:linear-gradient(180deg,#F2DC86 0%,#D9B743 55%,#C29E25 100%);color:#1E1624;font:800 20px/1.15 HmManrope,Manrope,system-ui,sans-serif;text-decoration:none;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 18px 40px -16px rgba(201,162,39,.9);transition:transform .25s}.hm3 .cta:hover{color:#1E1624;transform:translateY(-2px)}.hm3 .wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 24px;border-radius:16px;background:#25D366;color:#05220F;font:800 17px/1 HmManrope,Manrope,system-ui,sans-serif;text-decoration:none}.hm3 .wa:hover{color:#05220F}.hm3 .nav-links{display:flex;gap:28px}.hm3 .nav-links a{color:#FBF6EE;text-decoration:none;font-weight:700;font-size:16px;opacity:.85}.hm3 .nav-links a:hover{opacity:1;color:#F0D77E}.hm3 .glass{background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.04));backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 30px 60px -30px rgba(0,0,0,.8)}.hm3 .hero-grid{display:flex;flex-wrap:wrap;gap:24px 40px;align-items:center}.hm3 .hero-copy{flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:26px;position:relative;z-index:2}.hm3 .stage{flex:1 1 520px;min-width:0;height:640px;position:relative;perspective:1500px;perspective-origin:50% 38%;--r:330px;--pw:196px;--ph:350px}.hm3 .ring{position:absolute;left:50%;top:46%;width:0;height:0;transform-style:preserve-3d;animation:mp-spin 40s linear infinite}.hm3 .stage:hover .ring{animation-play-state:paused}.hm3 .ph{position:absolute;left:calc(var(--pw) / -2);top:calc(var(--ph) / -2);width:var(--pw);height:var(--ph);border-radius:30px;padding:7px;background:linear-gradient(160deg,#3A2E40,#120D16 60%,#2A2030);box-shadow:inset 0 0 0 1.5px rgba(240,215,126,.45),0 30px 50px -20px rgba(0,0,0,.9)}.hm3 .ph video,.hm3 .ph img{width:100%;height:100%;object-fit:cover;border-radius:24px;display:block;background:#1a1220}.hm3 .ph::after{content:"";position:absolute;inset:7px;border-radius:24px;background:linear-gradient(120deg,rgba(255,255,255,.18),transparent 40%);pointer-events:none}.hm3 .floor{position:absolute;left:50%;top:78%;width:620px;height:140px;margin-left:-310px;border-radius:50%;background:radial-gradient(closest-side,rgba(240,215,126,.35),rgba(201,162,39,.08) 60%,transparent);filter:blur(6px);transform:rotateX(70deg)}@keyframes mp-spin{from{transform:rotateX(-8deg) rotateY(0deg)}to{transform:rotateX(-8deg) rotateY(-360deg)}}.hm3 .mq{overflow:hidden;border-block:1px solid rgba(240,215,126,.22);background:#120D16}.hm3 .mq-in{display:flex;gap:48px;width:max-content;padding:22px 0;animation:mp-mq 30s linear infinite;font-weight:800;font-size:22px;letter-spacing:.02em;white-space:nowrap}.hm3 .mq-in span{display:inline-flex;align-items:center;gap:48px;color:#FBF6EE}.hm3 .mq-in i{font-style:normal;color:var(--gold)}@keyframes mp-mq{to{transform:translateX(-50%)}}.hm3 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;perspective:1200px}.hm3 .card{display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:26px;background:#fff;color:#1E1624;box-shadow:inset 0 0 0 1px rgba(30,22,36,.08),0 30px 50px -40px rgba(30,22,36,.7);transform:rotateX(0) rotateY(0);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;transform-style:preserve-3d}.hm3 .card:hover{transform:rotateX(8deg) rotateY(-10deg) translateZ(20px);box-shadow:inset 0 0 0 1.5px rgba(201,162,39,.6),30px 40px 60px -30px rgba(30,22,36,.55)}.hm3 .card .ico{display:grid;place-items:center;width:58px;height:58px;border-radius:16px;background:linear-gradient(160deg,#2A2030,#120D16);color:#F0D77E;transform:translateZ(30px);box-shadow:0 14px 24px -12px rgba(0,0,0,.6)}.hm3 .card h3{font-size:24px;line-height:1.2;font-weight:800}.hm3 .card p{font-size:18px;color:#4E4655}.hm3 .iso-wrap{display:flex;flex-wrap:wrap;gap:40px;align-items:center}.hm3 .iso-wrap>*{flex:1 1 440px;min-width:0}.hm3 .iso{height:600px;position:relative;perspective:1800px}.hm3 .plane{position:absolute;left:50%;top:50%;width:300px;height:520px;margin:-260px 0 0 -150px;transform-style:preserve-3d;transform:rotateX(55deg) rotateZ(-34deg);animation:mp-float 7s ease-in-out infinite}@keyframes mp-float{0%,100%{transform:rotateX(55deg) rotateZ(-34deg) translateZ(0)}50%{transform:rotateX(52deg) rotateZ(-30deg) translateZ(18px)}}.hm3 .lay{position:absolute;border-radius:22px}.hm3 .lay-base{inset:0;border-radius:40px;background:linear-gradient(160deg,#2A2030,#0E0A12);box-shadow:inset 0 0 0 2px rgba(240,215,126,.45),0 60px 80px -30px rgba(0,0,0,.95)}.hm3 .lay-scr{inset:12px;border-radius:30px;background:#FFFDF8;transform:translateZ(2px)}.hm3 .lay-c{left:28px;right:28px;padding:14px 16px;background:#fff;color:#1E1624;box-shadow:0 20px 30px -14px rgba(0,0,0,.55),inset 0 0 0 1.5px rgba(201,162,39,.5);font-size:14px;line-height:1.3}.hm3 .lay-c b{display:block;font-size:16px}.hm3 .lay-c small{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8A6A0A;margin-bottom:3px}.hm3 .iso-steps{display:flex;flex-direction:column;gap:14px;counter-reset:s}.hm3 .iso-steps li{display:flex;gap:18px;align-items:center;padding:18px 20px;border-radius:22px}.hm3 .iso-steps .n{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:linear-gradient(180deg,#F2DC86,#C9A227);color:#1E1624;font-weight:800;font-size:22px}.hm3 .iso-steps b{display:block;font-size:22px;line-height:1.25}.hm3 .iso-steps span span{font-size:17px;color:var(--mute-d)}.hm3 .fan{display:flex;justify-content:center;align-items:center;gap:0;perspective:1600px;padding:30px 0 10px}.hm3 .tv{flex:none;width:250px;display:flex;flex-direction:column;gap:14px;transition:transform .6s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d;margin:0 -10px}.hm3 .tv .ph{position:relative;left:auto;top:auto;width:250px;height:444px}.hm3 .tv video{border-radius:24px}.hm3 .tv:nth-child(1){transform:rotateY(28deg) translateZ(-60px)}.hm3 .tv:nth-child(2){transform:rotateY(10deg) translateZ(10px)}.hm3 .tv:nth-child(3){transform:rotateY(-10deg) translateZ(10px)}.hm3 .tv:nth-child(4){transform:rotateY(-28deg) translateZ(-60px)}.hm3 .tv:hover{transform:rotateY(0) translateZ(90px);z-index:3}.hm3 .tv p{text-align:center;font-weight:800;font-size:18px;line-height:1.3}.hm3 .tv p span{display:block;font-size:14.5px;font-weight:600;color:var(--mute-d)}.hm3 .flow{display:flex;justify-content:center;perspective:1400px;padding:20px 0}.hm3 .flow li{flex:none;width:210px;aspect-ratio:3/4;border-radius:22px;overflow:hidden;margin:0 -18px;box-shadow:0 40px 60px -30px rgba(0,0,0,.9),inset 0 0 0 1px rgba(240,215,126,.3);transition:transform .6s cubic-bezier(.2,.8,.2,1)}.hm3 .flow li img{width:100%;height:100%;object-fit:cover;display:block}.hm3 .flow li:nth-child(1){transform:rotateY(42deg) translateZ(-120px)}.hm3 .flow li:nth-child(2){transform:rotateY(24deg) translateZ(-40px)}.hm3 .flow li:nth-child(3){transform:translateZ(40px);z-index:2}.hm3 .flow li:nth-child(4){transform:rotateY(-24deg) translateZ(-40px)}.hm3 .flow li:nth-child(5){transform:rotateY(-42deg) translateZ(-120px)}.hm3 .flow li:hover{transform:rotateY(0) translateZ(110px);z-index:3}.hm3 .tilt{perspective:1400px}.hm3 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;transform:rotateX(14deg);transform-origin:50% 100%}.hm3 .step{display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:26px;background:#fff;color:#1E1624;box-shadow:0 40px 50px -34px rgba(30,22,36,.75),inset 0 0 0 1px rgba(30,22,36,.08)}.hm3 .step:nth-child(2){transform:translateY(-14px)}.hm3 .step:nth-child(3){transform:translateY(-28px)}.hm3 .step:nth-child(4){transform:translateY(-42px);background:#1E1624;color:#FBF6EE}.hm3 .step .n{display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:#1E1624;color:#F0D77E;font-size:28px;font-weight:800}.hm3 .step:nth-child(4) .n{background:linear-gradient(180deg,#F2DC86,#C9A227);color:#1E1624}.hm3 .step small{font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8A6A0A}.hm3 .step:nth-child(4) small{color:#F0D77E}.hm3 .step h3{font-size:23px;line-height:1.25;font-weight:800}.hm3 .step p{font-size:18px;color:#4E4655}.hm3 .step:nth-child(4) p{color:#CFC6D4}.hm3 .coin-stage{perspective:900px;width:220px;height:220px}.hm3 .coin{position:relative;width:220px;height:220px;transform-style:preserve-3d;animation:mp-coin 7s linear infinite}.hm3 .coin .face,.hm3 .coin .edge{position:absolute;inset:0;border-radius:50%}.hm3 .coin .face{display:grid;place-items:center;text-align:center;backface-visibility:hidden;background:radial-gradient(circle at 35% 30%,#FFF4C4,#F0D77E 30%,#C9A227 62%,#8A6A0A);color:#1E1624;box-shadow:inset 0 0 0 8px rgba(138,106,10,.45),inset 0 0 0 12px rgba(255,241,184,.5)}.hm3 .coin .face b{display:block;font-size:64px;line-height:.95;letter-spacing:-.03em}.hm3 .coin .face span{display:block;font-size:15px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.hm3 .coin .front{transform:translateZ(9px)}.hm3 .coin .back{transform:rotateY(180deg) translateZ(9px)}.hm3 .coin .edge{background:#8A6A0A}@keyframes mp-coin{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}.hm3 .two{display:flex;flex-wrap:wrap;gap:40px;align-items:center}.hm3 .two>*{flex:1 1 420px;min-width:0}.hm3 details{border-radius:20px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(240,215,126,.22)}.hm3 summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:22px 24px;font:800 21px/1.3 HmManrope,Manrope,system-ui,sans-serif}.hm3 summary::-webkit-details-marker{display:none}.hm3 summary::after{content:"+";flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#F2DC86,#C9A227);color:#1E1624;font:800 24px/1 HmManrope,Manrope,sans-serif}.hm3 details[open] summary::after{content:"–"}.hm3 details p{padding:0 24px 24px;font-size:19px;color:#CFC6D4}.hm3 .in{width:100%;height:62px;border:0;border-radius:16px;background:#FBF7EE;box-shadow:inset 0 0 0 1.5px rgba(30,22,36,.14);padding:0 18px;font:700 19px HmManrope,Manrope,system-ui,sans-serif;color:#1E1624;outline:none}.hm3 .in:focus{background:#fff;box-shadow:inset 0 0 0 2px #C9A227}.hm3 .in::placeholder{color:#8F8697;font-weight:500}@media (max-width:1020px){.hm3 .nav-links{display:none}.hm3 .cards{grid-template-columns:repeat(2,minmax(0,1fr))}.hm3 .steps{grid-template-columns:repeat(2,minmax(0,1fr));transform:none}.hm3 .step:nth-child(n){transform:none}.hm3 .tv{width:200px}.hm3 .tv .ph{width:200px;height:356px}}@media (max-width:760px){.hm3 .stage{--r:200px;--pw:132px;--ph:236px;height:460px}.hm3 .floor{width:380px;margin-left:-190px}.hm3 .fan{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scroll-snap-type:x mandatory;padding:20px 24px;gap:16px}.hm3 .tv,.hm3 .tv:nth-child(n){transform:none;margin:0;scroll-snap-align:center}.hm3 .flow{overflow-x:auto;justify-content:flex-start;padding:20px 30px}.hm3 .flow li{width:170px}.hm3 .iso{height:480px}.hm3 .plane{transform:scale(.8) rotateX(55deg) rotateZ(-34deg);animation:none}}@media (max-width:620px){.hm3{font-size:18px}.hm3 .cards,.hm3 .steps{grid-template-columns:minmax(0,1fr)}.hm3 .nav-cta{display:none!important}.hm3 .cta{width:100%}.hm3 .row2{flex-direction:column}}@media (prefers-reduced-motion:reduce){.hm3 *{animation:none!important;transition:none!important}}
+
+.hm3 h1,.hm3 h2,.hm3 h3{font-family:inherit;color:inherit;text-transform:none}.hm3 p{color:inherit}.hm3 video{max-width:none}.hm3 img{max-width:none}
+@media (max-width:860px){.hm3 footer{padding-bottom:110px!important}}
+.hm3 [hidden]{display:none!important}
+.hm3 .ring .ph{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+</style>
+<div class="hm3">
+
+<p style="background: linear-gradient(90deg, #8A6A0A, #C9A227, #8A6A0A); color: #1E1624; text-align: center; padding: 10px 16px; font-size: 15px; font-weight: 800; line-height: 1.35">Lavoriamo con una sola dermopigmentista per provincia. Chiedi se la tua è libera.</p>
+
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(14,10,18,.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(240,215,126,.16)">
+  <div class="wrap" style="display: flex; align-items: center; gap: 24px; min-height: 74px">
+    <a href="#top" aria-label="Agenda Martinus, torna all'inizio" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #FBF6EE">
+      <svg width="40" height="40" viewBox="0 0 60 60" aria-hidden="true" style="color: #F0D77E"><polygon points="30,3 54,16.5 54,43.5 30,57 6,43.5 6,16.5" fill="none" stroke="currentColor" stroke-width="2.6"></polygon><path d="M19 42V20l11 14 11-14v22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"></path></svg>
+      <span style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; font-size: 15px; letter-spacing: .2em; line-height: 1">AGENDA MARTINUS</span><span style="font-weight: 600; font-size: 12.5px; color: #CFC6D4; line-height: 1">per il trucco permanente</span></span>
+    </a>
+    <span style="flex: 1"></span>
+    <nav class="nav-links" aria-label="Sezioni"><a href="#cosa">Cosa facciamo</a><a href="#video">Video</a><a href="#come">Come funziona</a><a href="#domande">Domande</a></nav>
+    <a href="https://wa.me/393511168052?text=Ciao%21%20Ti%20scrivo%20dal%20sito%3A%20sono%20interessata%20ad%20Agenda%20Martinus%20e%20vorrei%20fissare%20la%20chiamata%20gratuita." target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp" style="display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #25D366; color: #05220F; flex: none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2Zm5.8 14.06c-.24.68-1.42 1.32-1.95 1.37-.5.05-1.13.07-1.82-.11a16.6 16.6 0 0 1-1.65-.61c-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.17-1.56-1.17-2.98 0-1.42.75-2.11 1.01-2.4.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.13.59.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.42.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.65-.14.26.1 1.69.8 1.98.94.29.14.48.22.55.34.07.12.07.7-.17 1.38Z"></path></svg></a>
+    <a class="cta nav-cta" href="#chiamata" data-lead style="min-height: 48px; padding: 0 20px; font-size: 16px; border-radius: 14px; box-shadow: none">Chiamata gratuita</a>
+  </div>
+</header>
+
+<!-- HERO: 3D ring of real videos -->
+<div id="top" style="position: relative; padding: 56px 0 40px; background: radial-gradient(900px 600px at 75% 30%, rgba(201,162,39,.22), transparent 70%), radial-gradient(700px 500px at 10% 90%, rgba(120,80,140,.18), transparent 70%), #0E0A12">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eye">Per dermopigmentiste</p>
+      <h1 style="font-size: clamp(44px, 5.8vw, 78px); line-height: 1.02; font-weight: 800; letter-spacing: -.035em">Ti portiamo clienti nuove. <span class="gold-t">Tu fai solo i trattamenti.</span></h1>
+      <p style="font-size: clamp(20px, 2vw, 24px); line-height: 1.45; color: #CFC6D4; max-width: 30em">Sito, foto, video e sponsorizzate: facciamo tutto noi. Le richieste ti arrivano sul telefono, pronte da chiamare.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+        <a class="cta" href="#chiamata" data-lead>Prenota la chiamata gratuita <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+        <span style="font-weight: 700; font-size: 16px; color: #CFC6D4">Gratis · 30 minuti · Senza impegno</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <div class="glass" style="display: flex; align-items: center; gap: 14px; padding: 14px 20px; border-radius: 20px">
+          <b class="gold-t" style="font-size: 42px; line-height: 1; letter-spacing: -.02em">10–15</b>
+          <span style="font-size: 16px; line-height: 1.3; font-weight: 700">clienti nuove<br>ogni mese</span>
+        </div>
+        <div class="glass" style="display: flex; align-items: center; gap: 14px; padding: 14px 20px; border-radius: 20px">
+          <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#F0D77E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3Z"></path><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg>
+          <span style="font-size: 16px; line-height: 1.3; font-weight: 700">Se non arrivano,<br><span style="color: #F0D77E">ti rimborsiamo</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage" aria-label="I video che abbiamo fatto per Sabrina Lovisolo, in un carosello 3D">
+      <div class="floor" aria-hidden="true"></div>
+      <div class="ring">
+        <div class="ph" style="transform: rotateY(0deg) translateZ(var(--r))"><video src="/mx/pmu/home/l1.mp4" poster="/mx/pmu/home/l1.jpg" autoplay muted loop playsinline aria-hidden="true"></video></div>
+        <div class="ph" style="transform: rotateY(60deg) translateZ(var(--r))"><video src="/mx/pmu/home/l2.mp4" poster="/mx/pmu/home/l2.jpg" autoplay muted loop playsinline aria-hidden="true"></video></div>
+        <div class="ph" style="transform: rotateY(120deg) translateZ(var(--r))"><video src="/mx/pmu/home/l3.mp4" poster="/mx/pmu/home/l3.jpg" autoplay muted loop playsinline aria-hidden="true"></video></div>
+        <div class="ph" style="transform: rotateY(180deg) translateZ(var(--r))"><video src="/mx/pmu/home/l4.mp4" poster="/mx/pmu/home/l4.jpg" autoplay muted loop playsinline aria-hidden="true"></video></div>
+        <div class="ph" style="transform: rotateY(240deg) translateZ(var(--r))"><video src="/mx/pmu/home/l5.mp4" poster="/mx/pmu/home/l5.jpg" autoplay muted loop playsinline aria-hidden="true"></video></div>
+        <div class="ph" style="transform: rotateY(300deg) translateZ(var(--r))"><video src="/mx/pmu/home/l6.mp4" poster="/mx/pmu/home/l6.jpg" autoplay muted loop playsinline aria-hidden="true"></video></div>
+      </div>
+      <p class="glass" style="position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); padding: 10px 18px; border-radius: 99px; font-size: 14.5px; font-weight: 700; white-space: nowrap">Video veri, fatti da noi per <span style="color: #F0D77E">Sabrina Lovisolo</span></p>
+    </div>
+  </div>
+</div>
+
+<div class="mq" aria-hidden="true"><div class="mq-in">
+  <span>Sito web <i>◆</i> Foto <i>◆</i> Video <i>◆</i> Sponsorizzate <i>◆</i> Richieste sul telefono <i>◆</i> Agenda <i>◆</i> Promemoria WhatsApp <i>◆</i></span>
+  <span>Sito web <i>◆</i> Foto <i>◆</i> Video <i>◆</i> Sponsorizzate <i>◆</i> Richieste sul telefono <i>◆</i> Agenda <i>◆</i> Promemoria WhatsApp <i>◆</i></span>
+</div></div>
+
+<!-- COSA FACCIAMO -->
+<div id="cosa" style="padding: 100px 0; background: #FBF4E4; color: #1E1624">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: 44px">
+    <div style="display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center">
+      <p class="eye lt" style="align-self: center">Cosa facciamo, esattamente</p>
+      <h2 class="h2" style="max-width: 15em">Tutto quello che serve per riempirti l'agenda.</h2>
+      <p style="font-size: 21px; color: #4E4655">Sei cose. Le facciamo noi, dall'inizio alla fine.</p>
+    </div>
+    <ol class="cards">
+      <li class="card"><span style="display: flex; align-items: center; justify-content: space-between"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"></rect><path d="M3 9h18M7 6.5h.01M10 6.5h.01"></path></svg></span><b style="font-size: 15px; color: #8A6A0A">01</b></span><h3>Il tuo sito</h3><p>Un sito tutto tuo, con i tuoi lavori e il modulo per contattarti. È a tuo nome.</p></li>
+      <li class="card"><span style="display: flex; align-items: center; justify-content: space-between"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="12" rx="2.5"></rect><path d="m15.5 10.5 6-3.5v10l-6-3.5"></path></svg></span><b style="font-size: 15px; color: #8A6A0A">02</b></span><h3>Foto e video</h3><p>Con i tuoi lavori veri montiamo foto e video per la pubblicità. Tu ci mandi il materiale dal telefono.</p></li>
+      <li class="card"><span style="display: flex; align-items: center; justify-content: space-between"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 1 1 14 0C19 14.8 12 21 12 21Z"></path><circle cx="12" cy="9.5" r="2.6"></circle></svg></span><b style="font-size: 15px; color: #8A6A0A">03</b></span><h3>Sponsorizzate nella tua provincia</h3><p>Su Facebook e Instagram, solo alle donne vicino a te che cercano trucco permanente.</p></li>
+      <li class="card"><span style="display: flex; align-items: center; justify-content: space-between"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M10.5 18.5h3M9 8h6M9 11.5h4"></path></svg></span><b style="font-size: 15px; color: #8A6A0A">04</b></span><h3>Le richieste sul telefono</h3><p>Nella tua app Agenda Martinus: nome, numero, cosa vuole e da quale annuncio arriva.</p></li>
+      <li class="card"><span style="display: flex; align-items: center; justify-content: space-between"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"></rect><path d="M3 10h18M8 3v4M16 3v4"></path><path d="m9 15 2 2 4-4"></path></svg></span><b style="font-size: 15px; color: #8A6A0A">05</b></span><h3>Agenda e promemoria</h3><p>Fissi la consulenza dall'app. Il promemoria su WhatsApp parte da solo, 48 ore prima.</p></li>
+      <li class="card"><span style="display: flex; align-items: center; justify-content: space-between"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16"></path><path d="m7 15 4-4 3 3 5-6"></path></svg></span><b style="font-size: 15px; color: #8A6A0A">06</b></span><h3>Ogni mese miglioriamo</h3><p>Guardiamo quali annunci portano clienti vere, teniamo quelli e cambiamo gli altri.</p></li>
+    </ol>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; padding: 32px 36px; border-radius: 28px; background: linear-gradient(160deg, #2A2030, #0E0A12); color: #FBF6EE; box-shadow: 0 40px 60px -40px rgba(30,22,36,.9)">
+      <p style="font-size: clamp(24px, 2.8vw, 34px); line-height: 1.2; font-weight: 800; flex: 1 1 420px">Tu fai solo 2 cose: <span class="gold-t">la consulenza e il trattamento.</span></p>
+      <p style="font-size: 20px; font-weight: 700; color: #CFC6D4">Al resto pensiamo noi.</p>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO TESTIMONIANZE: 3D fan -->
+<div id="video" style="padding: 100px 0 90px; background: radial-gradient(900px 500px at 50% 0%, rgba(201,162,39,.18), transparent 70%), #0E0A12">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center">
+      <p class="eye" style="align-self: center">Guarda e ascolta</p>
+      <h2 class="h2" style="max-width: 16em">Sabrina te lo racconta <span class="gold-t">con la sua voce.</span></h2>
+      <p style="font-size: 20px; color: #CFC6D4">Dermopigmentista da 12 anni. È stata la prima a provare Agenda Martinus.</p>
+    </div>
+    <div class="fan">
+      <figure class="tv"><div class="ph"><video src="/mx/pmu/home/t-risultato.mp4" poster="/mx/pmu/home/t-risultato.jpg" controls playsinline preload="none"></video></div><p>Il risultato in 3 settimane<span>30 secondi</span></p></figure>
+      <figure class="tv"><div class="ph"><video src="/mx/pmu/home/t-storia.mp4" poster="/mx/pmu/home/t-storia.jpg" controls playsinline preload="none"></video></div><p>La storia di Sabrina<span>51 secondi</span></p></figure>
+      <figure class="tv"><div class="ph"><video src="/mx/pmu/home/t-lavoro.mp4" poster="/mx/pmu/home/t-lavoro.jpg" controls playsinline preload="none"></video></div><p>«Il lavoro lo so fare»<span>48 secondi</span></p></figure>
+      <figure class="tv"><div class="ph"><video src="/mx/pmu/home/t-agenzia.mp4" poster="/mx/pmu/home/t-agenzia.jpg" controls playsinline preload="none"></video></div><p>Se un'agenzia ti ha deluso<span>47 secondi</span></p></figure>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 10px">
+      <div class="glass" style="padding: 18px 26px; border-radius: 22px; text-align: center; min-width: 170px"><b class="gold-t" style="display: block; font-size: 56px; line-height: 1; letter-spacing: -.03em">15</b><span style="font-size: 16px; font-weight: 700">consulenze</span></div>
+      <div class="glass" style="padding: 18px 26px; border-radius: 22px; text-align: center; min-width: 170px"><b class="gold-t" style="display: block; font-size: 56px; line-height: 1; letter-spacing: -.03em">12</b><span style="font-size: 16px; font-weight: 700">clienti con l'acconto</span></div>
+      <div class="glass" style="padding: 18px 26px; border-radius: 22px; text-align: center; min-width: 170px"><b class="gold-t" style="display: block; font-size: 56px; line-height: 1; letter-spacing: -.03em">3</b><span style="font-size: 16px; font-weight: 700">settimane</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LAVORI: coverflow -->
+<div style="padding: 80px 0 100px; background: #16101B">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: 24px">
+    <div class="two">
+      <div style="display: flex; flex-direction: column; gap: 18px">
+        <p class="eye">I suoi lavori</p>
+        <h2 class="h2">Mostriamo i lavori veri. <span class="gold-t">Arriva chi cerca la qualità.</span></h2>
+      </div>
+      <blockquote class="glass" style="padding: 28px; border-radius: 26px; display: flex; gap: 18px; align-items: center">
+        <img src="/mx/pmu/home/sabrina.webp" alt="Sabrina Lovisolo" style="flex: none; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: 50% 6%; background: #2A2030; box-shadow: 0 0 0 3px #C9A227">
+        <span style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 21px; line-height: 1.4; font-weight: 700">«In sole tre settimane ho fatto 15 consulenze, e 12 sono diventate clienti con l'acconto pagato.»</span><span style="font-size: 16px; color: #CFC6D4"><b style="color: #F0D77E">Sabrina Lovisolo</b> · dermopigmentista</span></span>
+      </blockquote>
+    </div>
+    <ul class="flow">
+      <li><img src="/mx/pmu/home/sopr-prima-dopo.webp" alt="Sopracciglia, prima e dopo, di Sabrina Lovisolo"></li>
+      <li><img src="/mx/pmu/home/labbra.webp" alt="Labbra di Sabrina Lovisolo"></li>
+      <li><img src="/mx/pmu/home/sopr-zoom.webp" alt="Sopracciglia pelo a pelo di Sabrina Lovisolo"></li>
+      <li><img src="/mx/pmu/home/eyeliner.webp" alt="Eyeliner di Sabrina Lovisolo"></li>
+      <li><img src="/mx/pmu/home/sopr-natural.webp" alt="Sopracciglia naturali di Sabrina Lovisolo"></li>
+    </ul>
+    <p style="text-align: center; font-size: 15px; font-weight: 700; color: #CFC6D4">Lavori di Sabrina Lovisolo</p>
+  </div>
+</div>
+
+<!-- APP: exploded 3D phone -->
+<div style="padding: 100px 0; background: radial-gradient(800px 500px at 20% 50%, rgba(201,162,39,.16), transparent 70%), #0E0A12">
+  <div class="wrap iso-wrap">
+    <div class="iso" aria-label="L'app Agenda Martinus aperta a strati">
+      <div class="plane">
+        <div class="lay lay-base"></div>
+        <div class="lay lay-scr"></div>
+        <div class="lay lay-c" style="top: 40px; transform: translateZ(40px)"><small>Agenda Martinus</small><b>Oggi · 3 richieste nuove</b></div>
+        <div class="lay lay-c" style="top: 130px; transform: translateZ(90px)"><small>Nuova · 09:42</small><b>Giulia R. · Sopracciglia</b>Dall'annuncio «video sopracciglia»</div>
+        <div class="lay lay-c" style="top: 240px; transform: translateZ(140px); background: linear-gradient(180deg,#F2DC86,#D9B743)"><small style="color: #1E1624">Consulenza fissata</small><b>Giovedì · 10:30</b></div>
+        <div class="lay lay-c" style="top: 340px; transform: translateZ(190px); background: #25D366; color: #05220F; box-shadow: 0 20px 30px -14px rgba(0,0,0,.55)"><small style="color: #05220F">WhatsApp · in automatico</small><b>Promemoria 48 ore prima</b></div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 24px">
+      <p class="eye">La tua app</p>
+      <h2 class="h2">Ogni cliente, <span class="gold-t">dal primo messaggio alla poltrona.</span></h2>
+      <ol class="iso-steps">
+        <li class="glass"><span class="n">1</span><span><b>La richiesta arriva</b><span>Sul telefono, con nome e numero.</span></span></li>
+        <li class="glass"><span class="n">2</span><span><b>Sai da dove arriva</b><span>Vedi quale annuncio l'ha portata.</span></span></li>
+        <li class="glass"><span class="n">3</span><span><b>Fissi la consulenza</b><span>Un tocco, ed è in agenda.</span></span></li>
+        <li class="glass"><span class="n">4</span><span><b>Il promemoria parte da solo</b><span>Su WhatsApp, 48 ore prima.</span></span></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- COME FUNZIONA -->
+<div id="come" style="padding: 100px 0 120px; background: #FBF4E4; color: #1E1624">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: 56px">
+    <div style="display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center">
+      <p class="eye lt" style="align-self: center">Come funziona</p>
+      <h2 class="h2">Dalla chiamata alla prima cliente.</h2>
+    </div>
+    <div class="tilt">
+      <ol class="steps">
+        <li class="step"><span class="n">1</span><small>Chiamata · 30 min</small><h3>Ci conosciamo</h3><p>Ci racconti il tuo studio e controlliamo che la tua provincia sia libera.</p></li>
+        <li class="step"><span class="n">2</span><small>Tu · 10 minuti</small><h3>Ci mandi i tuoi lavori</h3><p>Foto e video dal telefono, su WhatsApp. Scegliamo noi i migliori.</p></li>
+        <li class="step"><span class="n">3</span><small>Noi · prima settimana</small><h3>Andiamo online</h3><p>Sito, video e sponsorizzate partono. Ti diamo l'accesso alla tua app.</p></li>
+        <li class="step"><span class="n"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><small>Ogni giorno</small><h3>Arrivano le clienti</h3><p>Ti arriva la richiesta, la chiami e fissi la consulenza.</p></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- GARANZIA: 3D coin -->
+<div style="padding: 100px 0; background: radial-gradient(700px 500px at 30% 50%, rgba(201,162,39,.22), transparent 70%), #0E0A12">
+  <div class="wrap two">
+    <div style="display: grid; place-items: center; min-height: 300px">
+      <div class="coin-stage" aria-hidden="true">
+        <div class="coin">
+          <div class="edge" style="transform: translateZ(-8px)"></div><div class="edge" style="transform: translateZ(-6px)"></div><div class="edge" style="transform: translateZ(-4px)"></div><div class="edge" style="transform: translateZ(-2px)"></div><div class="edge" style="transform: translateZ(0px)"></div><div class="edge" style="transform: translateZ(2px)"></div><div class="edge" style="transform: translateZ(4px)"></div><div class="edge" style="transform: translateZ(6px)"></div><div class="edge" style="transform: translateZ(8px)"></div>
+          <div class="face front"><span><b>10</b><span>clienti</span><span>garantite</span></span></div>
+          <div class="face back"><svg width="110" height="110" viewBox="0 0 60 60"><polygon points="30,3 54,16.5 54,43.5 30,57 6,43.5 6,16.5" fill="none" stroke="#1E1624" stroke-width="3"></polygon><path d="M19 42V20l11 14 11-14v22" fill="none" stroke="#1E1624" stroke-width="3" stroke-linecap="square"></path></svg></div>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 24px">
+      <p class="eye">La garanzia</p>
+      <h2 class="h2">10 clienti nuove garantite. <span class="gold-t">O ti rimborsiamo.</span></h2>
+      <ul style="display: flex; flex-direction: column; gap: 12px">
+        <li class="glass" style="display: flex; gap: 16px; align-items: center; padding: 18px 20px; border-radius: 20px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#F0D77E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M12 21s-7-6.2-7-11.5a7 7 0 1 1 14 0C19 14.8 12 21 12 21Z"></path><circle cx="12" cy="9.5" r="2.6"></circle></svg><span><b style="display: block; font-size: 21px">Una sola per provincia</b><span style="font-size: 17px; color: #CFC6D4">Non lavoriamo con chi ti fa concorrenza vicino a te.</span></span></li>
+        <li class="glass" style="display: flex; gap: 16px; align-items: center; padding: 18px 20px; border-radius: 20px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#F0D77E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><rect x="4" y="10" width="16" height="11" rx="2.5"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg><span><b style="display: block; font-size: 21px">Tutto a tuo nome</b><span style="font-size: 17px; color: #CFC6D4">Sito, Facebook, Instagram e account pubblicitario restano tuoi.</span></span></li>
+        <li class="glass" style="display: flex; gap: 16px; align-items: center; padding: 18px 20px; border-radius: 20px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#F0D77E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5M10 13h6M10 17h4"></path></svg><span><b style="display: block; font-size: 21px">Tutto per iscritto</b><span style="font-size: 17px; color: #CFC6D4">Prezzo e garanzia nel contratto, prima di iniziare.</span></span></li>
+      </ul>
+      <a class="cta" href="#chiamata" data-lead style="align-self: flex-start">Controlla se la tua provincia è libera</a>
+    </div>
+  </div>
+</div>
+
+<!-- DOMANDE -->
+<div id="domande" style="padding: 90px 0; background: #16101B">
+  <div class="wrap" style="max-width: 880px; display: flex; flex-direction: column; gap: 32px">
+    <h2 class="h2" style="text-align: center">Le domande di tutte</h2>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <details><summary>Quanto costa?</summary><p>Dipende dalla tua provincia. Te lo diciamo in chiamata e lo mettiamo per iscritto. Se le clienti non arrivano, ti rimborsiamo.</p></details>
+      <details><summary>Arrivano solo clienti che cercano lo sconto?</summary><p>No. Mostriamo i tuoi lavori, non promozioni. Arriva chi cerca la qualità.</p></details>
+      <details><summary>Devo saper usare il computer?</summary><p>No. Fai tutto dal telefono. All'inizio ti spieghiamo tutto noi.</p></details>
+      <details><summary>Devo cambiare numero WhatsApp?</summary><p>No. Usi il tuo solito numero.</p></details>
+      <details><summary>Devo pubblicare sui social?</summary><p>No. Foto, video e annunci li prepariamo noi con i tuoi lavori.</p></details>
+      <details><summary>Di chi sono il sito e gli account?</summary><p>Tuoi. Sito, Facebook, Instagram e account pubblicitario sono a tuo nome.</p></details>
+    </div>
+  </div>
+</div>
+
+<!-- CHIAMATA -->
+<div id="chiamata" style="padding: 100px 0; background: radial-gradient(800px 460px at 50% 0%, rgba(201,162,39,.24), transparent 70%), #0E0A12">
+  <div class="wrap two">
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <p class="eye">Chiamata gratuita</p>
+      <h2 class="h2">La tua provincia è <span class="gold-t">ancora libera</span>?</h2>
+      <p style="font-size: 21px; color: #CFC6D4">Lasciaci nome e numero. Ti chiamiamo noi dal <b style="color: #FBF6EE">351 116 8052</b>.</p>
+      <ul style="display: flex; flex-direction: column; gap: 10px; font-size: 18px; font-weight: 700">
+        <li style="display: flex; gap: 10px; align-items: center"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#F0D77E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Gratis, 30 minuti</li>
+        <li style="display: flex; gap: 10px; align-items: center"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#F0D77E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Senza impegno</li>
+        <li style="display: flex; gap: 10px; align-items: center"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#F0D77E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Una sola dermopigmentista per provincia</li>
+      </ul>
+    </div>
+    <form id="hm-form" novalidate style="display: flex; flex-direction: column; gap: 14px; padding: 32px; border-radius: 30px; background: #fff; color: #1E1624; box-shadow: inset 0 0 0 2px rgba(201,162,39,.6), 0 50px 90px -40px rgba(201,162,39,.45); transform: perspective(1400px) rotateY(-6deg)">
+      <h3 style="font-size: 30px; line-height: 1.15; font-weight: 800">Ti chiamiamo noi</h3>
+      <div class="row2" style="display: flex; gap: 12px">
+        <label style="flex: 1; display: flex; flex-direction: column; gap: 6px; font-weight: 800; font-size: 16px">Nome<input class="in" type="text" name="nome" required minlength="2" autocomplete="given-name" placeholder="Nome"></label>
+        <label style="flex: 1; display: flex; flex-direction: column; gap: 6px; font-weight: 800; font-size: 16px">Cognome<input class="in" type="text" name="cognome" required minlength="2" autocomplete="family-name" placeholder="Cognome"></label>
+      </div>
+      <label style="display: flex; flex-direction: column; gap: 6px; font-weight: 800; font-size: 16px">Telefono<input class="in" type="tel" inputmode="tel" name="telefono" required autocomplete="tel-national" placeholder="333 123 4567"></label>
+      <button class="cta" type="submit" style="width: 100%; margin-top: 6px">Prenota la chiamata gratuita</button>
+      <p style="font-size: 14px; color: #4E4655; text-align: center">Usiamo il tuo numero solo per chiamarti. <a href="/privacy" style="color: #8A6A0A">Privacy</a></p>
+      <div style="display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid rgba(30,22,36,.12)"><span style="font-weight: 700; font-size: 15px; color: #4E4655">oppure</span><a class="wa" href="https://wa.me/393511168052?text=Ciao%21%20Ti%20scrivo%20dal%20sito%3A%20sono%20interessata%20ad%20Agenda%20Martinus%20e%20vorrei%20fissare%20la%20chiamata%20gratuita." target="_blank" rel="noopener" style="flex: 1">Scrivici su WhatsApp</a></div>
+    </form><div id="hm-done" hidden style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center; padding: 32px; border-radius: 30px; background: #fff; color: #1E1624"><b style="font-size: 28px">Fatto, grazie!</b><span style="font-size: 18px; color: #4E4655">Ti chiamiamo noi al più presto dal <b>351 116 8052</b>: salvalo così ci riconosci.</span></div>
+  </div>
+</div>
+
+<footer class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding-top: 30px; padding-bottom: 40px; font-size: 15px; font-weight: 600; color: #CFC6D4">
+  <span>© 2026 Martinus Agency · Clienti nuove per chi fa trucco permanente</span>
+  <span><a href="/privacy">Privacy</a> · support@martinusagency.com</span>
+</footer>
+
+</div>
+<button type="button" id="hm-open" data-lead hidden></button>

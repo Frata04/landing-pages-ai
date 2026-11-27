@@ -1,0 +1,15 @@
+/* home 3D: video del carosello sempre muti e in loop; modulo in fondo che passa i dati al modulo del popup (#ld-form), che li manda al gestionale con pixel e rete di sicurezza */
+(function(){
+  var d=document;
+  d.querySelectorAll('.hm3 .ring video').forEach(function(v){v.muted=true;v.setAttribute('muted','');var p=v.play();if(p&&p.catch)p.catch(function(){})});
+  var f=d.getElementById('hm-form');if(!f||f.dataset.ready)return;f.dataset.ready='1';
+  var L=d.getElementById('ld-form'),done=d.getElementById('hm-done'),ldOk=d.getElementById('ld-ok');if(!L)return;
+  var visto=false;
+  f.addEventListener('focusin',function(){if(visto)return;visto=true;try{L.elements.nome.dispatchEvent(new FocusEvent('focusin',{bubbles:true}))}catch(x){}});
+  f.addEventListener('submit',function(e){e.preventDefault();e.stopPropagation();
+    ['nome','cognome','telefono'].forEach(function(n){L.elements[n].value=(f.elements[n].value||'').trim()});
+    try{L.elements.nome.dispatchEvent(new Event('input',{bubbles:true}))}catch(x){}
+    var o=d.getElementById('hm-open');if(o)o.click();
+    if(L.requestSubmit)L.requestSubmit();else L.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}))});
+  if(ldOk&&done&&'MutationObserver' in window)new MutationObserver(function(){if(!ldOk.hidden){f.hidden=true;done.hidden=false}}).observe(ldOk,{attributes:true,attributeFilter:['hidden']});
+})();
