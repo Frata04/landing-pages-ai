@@ -1,7 +1,7 @@
 /* home 3D: video del carosello sempre muti e in loop; modulo in fondo che passa i dati al modulo del popup (#ld-form), che li manda al gestionale con pixel e rete di sicurezza */
 (function(){
   var d=document;
-  d.querySelectorAll('.hm3 .ring video').forEach(function(v){v.muted=true;v.setAttribute('muted','');var p=v.play();if(p&&p.catch)p.catch(function(){})});
+  d.querySelectorAll('.hm3 .h3-ring video').forEach(function(v){v.muted=true;v.setAttribute('muted','');var p=v.play();if(p&&p.catch)p.catch(function(){})});
   var f=d.getElementById('hm-form');if(!f||f.dataset.ready)return;f.dataset.ready='1';
   var L=d.getElementById('ld-form'),done=d.getElementById('hm-done'),ldOk=d.getElementById('ld-ok');if(!L)return;
   var visto=false;
